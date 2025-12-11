@@ -1,0 +1,37 @@
+{
+  "name": "Next.js Development",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  
+  // Features to add to the dev container
+  "features": {},
+  
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  
+  // Forward ports automatically
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  // Use 'forwardPorts' instead of 'appPort' if available
+  "postCreateCommand": "npm install",
+  
+  // Comment out to run as root instead
+  "remoteUser": "node"
+}
+
