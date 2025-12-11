@@ -1,0 +1,9 @@
+# Project Rules
+- Framework: Next.js 14+ (App Router).
+- Language: TypeScript (Strict).
+- Styling: Tailwind CSS (Utility classes only, no CSS modules).
+- Icons: lucide-react.
+- State: Use Server Components by default. Use 'use client' only for interactivity.
+- Imports: Use absolute imports (@/...).
+- Components: Functional components with named exports.
+
