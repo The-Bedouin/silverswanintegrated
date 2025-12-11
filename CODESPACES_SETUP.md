@@ -75,21 +75,35 @@ gh codespace create --repo The-Bedouin/silverswanintegrated
 
 **Important:** If you're creating a Codespace for the first time and haven't initialized Next.js yet, you'll need to do this first.
 
+### Check Your Node.js Version First
+
+Before running create-next-app, check your Node.js version:
+
+```bash
+node --version
+```
+
+**You need Node.js 20.9.0 or higher** for the latest Next.js. The devcontainer is configured with Node.js 20, but if you see Node.js 18, you'll need to rebuild your Codespace (see troubleshooting below).
+
+### Initialize Next.js
+
 In the Codespace terminal, run:
 
+**If your directory is empty or only has config files:**
 ```bash
 npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --yes
 ```
 
-Or if you prefer a simpler setup:
-
+**If your directory already has files (like README.md, .devcontainer/, etc.):**
 ```bash
-npx create-next-app@latest . --yes
+npx create-next-app@latest . --yes --force
 ```
+
+The `--force` flag tells create-next-app to proceed even if the directory isn't empty. It will merge with existing files safely.
 
 **Note:** 
 - The `--yes` flag automatically accepts all defaults
-- If the directory isn't empty, you may need to use `--force` flag
+- The `--force` flag is needed when the directory contains files (like README.md, config files, etc.)
 - This will create all necessary Next.js files and folders
 
 ---
@@ -212,11 +226,52 @@ The `.devcontainer/devcontainer.json` file is already configured to automaticall
 - Then forward port 3001 in the Ports panel
 - Or update `package.json` to use a different port by default
 
+### Node.js Version Warning (EBADENGINE)
+If you see a warning like:
+```
+npm warn EBADENGINE Unsupported engine {
+  package: 'create-next-app@16.0.8',
+  required: { node: '>=20.9.0' },
+  current: { node: 'v18.20.8' }
+}
+```
+
+**Solution:** Your Codespace is using Node.js 18, but Next.js 16+ requires Node.js 20+.
+
+1. **Rebuild your Codespace** (recommended):
+   - Click the Codespaces menu (top right) → "Rebuild Container"
+   - Or: Command Palette → "Codespaces: Rebuild Container"
+   - This will use the updated devcontainer.json with Node.js 20
+
+2. **Or manually upgrade Node.js** (temporary fix):
+   ```bash
+   # This is a workaround - rebuilding is better
+   nvm install 20
+   nvm use 20
+   ```
+
+### Directory Not Empty Error
+If you see:
+```
+The directory silverswanintegrated contains files that could conflict:
+  .devcontainer/
+  CODESPACES_SETUP.md
+  README.md
+  ...
+```
+
+**Solution:** Add the `--force` flag:
+```bash
+npx create-next-app@latest . --yes --force
+```
+
+The `--force` flag allows create-next-app to work in a non-empty directory. It will merge files safely.
+
 ### Dev Server Won't Start
 - Make sure dependencies are installed: `npm install`
 - Check for errors in the terminal
-- Verify Node.js version (Next.js requires Node.js 18.17 or later)
-- The devcontainer.json is configured with Node.js 18, which should work fine
+- Verify Node.js version (Next.js 16+ requires Node.js 20.9.0 or later)
+- The devcontainer.json is configured with Node.js 20, which should work fine
 - If you see "EADDRINUSE" error, another process is using port 3000
 
 ### Port Forwarding Not Working
