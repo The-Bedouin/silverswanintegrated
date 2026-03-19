@@ -1,15 +1,26 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Bricolage_Grotesque, Inter } from 'next/font/google'
 import './globals.css'
+import { cn } from '@/lib/utils'
 
-const inter = Inter({ subsets: ['latin'] })
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Silverswan',
-    default: 'Silverswan',
+    template: '%s | Silverswan Integrated Hub',
+    default: 'Silverswan Integrated Hub — Where Innovation Meets Inclusion',
   },
-  description: 'High-performance, SEO-ready Next.js application',
+  description: 'Silverswan Integrated Hub bridges the generational gap between seniors and youth through intergenerational care, digital inclusion, and community support across Canada.',
 }
 
 export default function RootLayout({
@@ -19,7 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(
+        inter.variable,
+        bricolage.variable,
+        "font-sans antialiased bg-swan-ivory"
+      )}>
+        {children}
+      </body>
     </html>
   )
 }

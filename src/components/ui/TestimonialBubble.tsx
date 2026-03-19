@@ -14,7 +14,7 @@ export function TestimonialBubble() {
             className="w-full h-full object-cover"
           />
         </div>
-        
+
         {/* Quote */}
         <div className="flex-1">
           <p className="text-sm md:text-base text-[#1a1a1a] leading-relaxed italic">

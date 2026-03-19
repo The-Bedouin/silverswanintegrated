@@ -1,6 +1,7 @@
 import { HeroV2 } from '@/components/sections/HeroV2'
 import { ImpactSection } from '@/components/sections/ImpactSection'
 import { EventsSection } from '@/components/sections/EventsSection'
+import { AboutSection } from '@/components/sections/AboutSection'
 import { SupportSection } from '@/components/sections/SupportSection'
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 import { ContactSection } from '@/components/sections/ContactSection'
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroV2 />
       <ImpactSection />
       <EventsSection />
+      <AboutSection />
       <SupportSection />
       <TestimonialsSection />
       <ContactSection />

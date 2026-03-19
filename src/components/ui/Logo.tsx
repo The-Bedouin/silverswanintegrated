@@ -27,9 +27,9 @@ export function Logo({ className }: LogoProps) {
           />
         </svg>
       </div>
-      
+
       {/* Logo Text */}
-      <span className="text-2xl md:text-3xl font-bold text-black">Kindora</span>
+      <span className="text-2xl md:text-3xl font-bold font-heading text-black">Kindora</span>
     </div>
   )
 }

@@ -38,7 +38,7 @@ export function DonorStats({ className }: DonorStatsProps) {
           />
         </div>
       </div>
-      
+
       {/* Stats Text */}
       <span className="text-sm md:text-base text-[#6B7280] font-medium">
         1000+ Donor active members

@@ -66,38 +66,38 @@ const REVIEWS: Review[] = [
 
 // --- COMPONENTS ---
 const ReviewCard = ({ review }: { review: Review }) => (
-  <div className="w-[320px] md:w-[380px] p-6 mx-4 bg-white rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-gray-100 flex-shrink-0 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-default group">
+  <div className="w-[280px] md:w-[340px] p-5 mx-3 bg-white rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-swan-grey flex-shrink-0 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-default group">
     {/* Header: Rating & Tag */}
     <div className="flex justify-between items-start mb-4">
       <div className="flex gap-1">
         {[...Array(review.rating)].map((_, i) => (
-          <Star key={i} className="w-3.5 h-3.5 text-orange-400 fill-orange-400" />
+          <Star key={i} className="w-3.5 h-3.5 text-swan-blue fill-swan-blue" />
         ))}
       </div>
-      <span className="px-2.5 py-1 bg-gray-50 text-[10px] font-semibold text-gray-500 rounded-full border border-gray-100 group-hover:bg-green-50 group-hover:text-green-600 transition-colors">
+      <span className="px-2.5 py-1 bg-swan-lavender/30 text-[10px] font-semibold text-swan-midnight/60 rounded-full border border-swan-lavender group-hover:bg-swan-lavender group-hover:text-swan-blue transition-colors">
         {review.tag}
       </span>
     </div>
 
     {/* Content */}
     <div className="mb-4 relative">
-      <Quote className="absolute -top-1 -left-1 w-6 h-6 text-gray-100 -z-10 fill-current" />
-      <p className="text-base font-medium text-gray-900 leading-relaxed tracking-tight">
+      <Quote className="absolute -top-1 -left-1 w-6 h-6 text-swan-lavender -z-10 fill-current" />
+      <p className="text-base font-medium text-swan-midnight leading-relaxed tracking-tight">
         &quot;{review.text}&quot;
       </p>
     </div>
 
     {/* Footer: Author Info */}
-    <div className="flex items-center gap-3 pt-4 border-t border-gray-50">
-      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">
+    <div className="flex items-center gap-3 pt-4 border-t border-swan-grey">
+      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-swan-lavender to-swan-sky/30 flex items-center justify-center text-xs font-bold text-swan-midnight">
         {review.name.charAt(0)}
       </div>
       <div>
         <div className="flex items-center gap-1">
-          <h4 className="font-bold text-xs text-black">{review.name}</h4>
-          <CheckCircle2 className="w-3 h-3 text-blue-500 fill-blue-500/10" />
+          <h4 className="font-bold text-xs text-swan-midnight">{review.name}</h4>
+          <CheckCircle2 className="w-3 h-3 text-swan-blue fill-swan-blue/10" />
         </div>
-        <p className="text-[10px] text-gray-500">{review.role}</p>
+        <p className="text-[10px] text-swan-midnight/50">{review.role}</p>
       </div>
     </div>
   </div>
@@ -106,18 +106,18 @@ const ReviewCard = ({ review }: { review: Review }) => (
 // --- MAIN COMPONENT ---
 export function TestimonialsSection() {
   return (
-    <div className="bg-[#FAFAFA] overflow-x-hidden">
-      <section className="w-full py-12 md:py-16 relative">
-        {/* Apple-style Header */}
-        <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-          <h2 className="text-xs font-semibold text-green-600 tracking-wider uppercase mb-2">
+    <div className="bg-swan-grey overflow-x-hidden">
+      <section className="w-full min-h-[80vh] flex flex-col justify-center py-8 md:py-14 relative">
+        {/* Header */}
+        <div className="max-w-6xl mx-auto px-6 mb-8 text-center">
+          <h2 className="text-xs font-semibold text-swan-blue tracking-wider uppercase mb-2">
             What People Are Saying
           </h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-swan-midnight tracking-tighter mb-4">
             Stories of Impact <br className="hidden md:block" />
-            <span className="text-slate-400">From Our Whole Community.</span>
+            <span className="text-swan-midnight/40">From Our Whole Community.</span>
           </h3>
-          <p className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-swan-midnight/50 max-w-2xl mx-auto leading-relaxed">
             Real experiences from the seniors, families, partners, and newcomers building a stronger
             future with Silverswan.
           </p>
@@ -126,8 +126,8 @@ export function TestimonialsSection() {
         {/* Marquee Container */}
         <div className="relative w-full space-y-6">
           {/* Edge Fade Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-[#FAFAFA] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-[#FAFAFA] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-r from-swan-grey to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 md:w-64 bg-gradient-to-l from-swan-grey to-transparent z-10 pointer-events-none" />
 
           {/* Row 1: Left Scroll */}
           <div className="flex w-max animate-scroll-left hover:[animation-play-state:paused]">
@@ -147,4 +147,3 @@ export function TestimonialsSection() {
     </div>
   )
 }
-

@@ -6,14 +6,14 @@ import { Laptop, Building2, Users, TrendingUp } from 'lucide-react'
 // --- Sub-components for cleanliness ---
 const ChartBar = ({ height, label }: { height: string; label: string }) => (
   <div className="flex flex-col items-center gap-2 group cursor-pointer">
-    <div className="relative w-8 bg-gray-100 rounded-t-lg h-24 flex items-end overflow-hidden">
+    <div className="relative w-8 bg-swan-lavender/50 rounded-t-lg h-24 flex items-end overflow-hidden">
       {/* Animated Bar */}
       <div
-        className="w-full bg-blue-500 rounded-t-lg transition-all duration-1000 ease-out group-hover:bg-blue-600"
+        className="w-full bg-swan-blue rounded-t-lg transition-all duration-1000 ease-out group-hover:bg-swan-blue/80"
         style={{ height: height }}
       />
     </div>
-    <span className="text-[10px] text-gray-500 font-medium">{label}</span>
+    <span className="text-[10px] text-swan-midnight/50 font-medium">{label}</span>
   </div>
 )
 
@@ -30,13 +30,13 @@ const StatCard = ({
   label: string
   value: string
 }) => (
-  <div className="flex flex-col gap-4 p-6 border border-gray-100 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
-    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${iconBg} ${iconColor}`}>
-      <Icon size={24} strokeWidth={2.5} />
+  <div className="flex flex-col gap-3 p-4 border border-swan-grey rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+    <div className={`w-10 h-10 rounded-full flex items-center justify-center ${iconBg} ${iconColor}`}>
+      <Icon size={20} strokeWidth={2.5} />
     </div>
     <div>
-      <p className="text-sm text-gray-500 font-medium mb-1">{label}</p>
-      <h3 className="text-3xl font-bold text-gray-900 tracking-tight">{value}</h3>
+      <p className="text-sm text-swan-midnight/50 font-medium mb-1">{label}</p>
+      <h3 className="text-2xl font-bold text-swan-midnight tracking-tight">{value}</h3>
     </div>
   </div>
 )
@@ -44,14 +44,14 @@ const StatCard = ({
 // --- Main Component ---
 export function ImpactSection() {
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <section className="min-h-screen flex flex-col justify-center py-8 lg:py-16 px-4 md:px-8 lg:px-16 bg-swan-midnight overflow-hidden">
+      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-stretch w-full">
         {/* LEFT COLUMN: Image & Floating Chart */}
-        <div className="relative">
+        <div className="relative flex flex-col">
           {/* Main Image Container */}
-          <div className="relative rounded-[2.5rem] overflow-hidden bg-gray-100 aspect-[4/5] md:aspect-[4/3] lg:aspect-[4/5] shadow-lg">
+          <div className="relative rounded-2xl overflow-hidden bg-swan-lavender flex-1 min-h-[300px] shadow-lg">
             <Image
-              src="https://images.unsplash.com/photo-1612611741189-a9b9eb01d515?q=80&w=2000&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2670&auto=format&fit=crop"
               alt="White jigsaw puzzle pieces on brown marble table - representing community connection and integration"
               fill
               className="object-cover"
@@ -59,13 +59,13 @@ export function ImpactSection() {
             />
           </div>
           {/* Floating Chart Card */}
-          <div className="absolute bottom-8 right-4 md:right-8 bg-white p-6 rounded-3xl shadow-xl max-w-[280px] w-full animate-fade-in-up">
-            <div className="mb-6">
-              <h4 className="font-bold text-gray-900 text-lg">Program Growth</h4>
-              <p className="text-xs text-gray-500 mt-1">Participants trained over the years</p>
+          <div className="absolute bottom-6 right-4 md:right-6 bg-white p-4 rounded-2xl shadow-xl max-w-[260px] w-full animate-fade-in-up">
+            <div className="mb-4">
+              <h4 className="font-bold text-swan-midnight text-lg">Program Growth</h4>
+              <p className="text-xs text-swan-midnight/50 mt-1">Participants trained over the years</p>
             </div>
 
-            <div className="flex items-end justify-between gap-2 h-32 pb-2">
+            <div className="flex items-end justify-between gap-2 h-24 pb-2">
               <ChartBar height="35%" label="2020" />
               <ChartBar height="55%" label="2021" />
               <ChartBar height="75%" label="2022" />
@@ -75,49 +75,48 @@ export function ImpactSection() {
         </div>
 
         {/* RIGHT COLUMN: Content */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6">
           {/* Badge */}
-          <div className="self-start px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-xs font-semibold text-gray-600 tracking-wide uppercase">
+          <div className="self-start px-4 py-1.5 rounded-full border border-swan-blue/20 bg-swan-lavender text-xs font-semibold text-swan-blue tracking-wide uppercase">
             Digital Inclusion
           </div>
 
           {/* Heading & Text */}
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold text-gray-900 leading-[1.15] tracking-tight">
-              Empowering Communities Through Technology Access
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
+          <div className="space-y-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-swan-ivory leading-[1.15] tracking-tight">
+              Social Inclusion Through Digital Literacy          </h2>
+            <p className="text-white/90 text-lg leading-relaxed">
               We&apos;ve equipped hundreds of seniors and minority community members across Canada with essential digital skills, business technology tools, and the confidence to thrive in today&apos;s digital economy.
             </p>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
             <StatCard
               icon={Users}
-              iconBg="bg-blue-100"
-              iconColor="text-blue-600"
+              iconBg="bg-swan-blue/10"
+              iconColor="text-swan-blue"
               label="Participants Trained"
               value="500+"
             />
             <StatCard
               icon={Laptop}
-              iconBg="bg-purple-100"
-              iconColor="text-purple-600"
+              iconBg="bg-swan-lavender"
+              iconColor="text-swan-midnight"
               label="Tech Programs"
               value="25+"
             />
             <StatCard
               icon={Building2}
-              iconBg="bg-orange-100"
-              iconColor="text-orange-600"
+              iconBg="bg-swan-sky/20"
+              iconColor="text-swan-blue"
               label="Businesses Supported"
               value="150+"
             />
             <StatCard
               icon={TrendingUp}
-              iconBg="bg-green-100"
-              iconColor="text-green-600"
+              iconBg="bg-swan-sage/20"
+              iconColor="text-swan-sage"
               label="Success Rate"
               value="92%"
             />
@@ -127,4 +126,3 @@ export function ImpactSection() {
     </section>
   )
 }
-

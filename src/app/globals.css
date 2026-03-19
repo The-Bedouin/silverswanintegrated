@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* Silver Swan Brand Colors */
+    --swan-blue: #097CE7;
+    --swan-sky: #8AB9FF;
+    --swan-lavender: #E5E6FA;
+    --swan-sage: #7FAE9E;
+    --swan-midnight: #0D043B;
+    --swan-charcoal: #121212;
+    --swan-ivory: #FCFAF1;
+    --swan-grey: #EEEEEE;
+  }
+
+  html {
+    font-family: var(--font-body);
+  }
+
+  body {
+    background-color: var(--swan-ivory);
+    color: var(--swan-midnight);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background-color: var(--swan-lavender);
+    color: var(--swan-midnight);
+  }
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.6s ease-in-out;
@@ -16,6 +53,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -26,6 +64,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -36,6 +75,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -45,6 +85,7 @@
   0% {
     transform: translateX(-50%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -56,4 +97,12 @@
 
 .animate-scroll-right {
   animation: scroll-right 60s linear infinite;
+}
+
+/* Shift the support-section image so its right edge aligns with the viewport edge */
+@media (min-width: 1024px) {
+  .support-image-flush-right {
+    left: auto;
+    right: calc(-1 * (max(0px, (100vw - 72rem) / 2) + 2rem));
+  }
 }
