@@ -115,7 +115,7 @@ export function SupportSection() {
                 />
               </div>
 
-              <FloatingBadge text="Supporting 500+ Seniors" subtext="Across Canada" />
+              <FloatingBadge text="Supporting 100+ Seniors" subtext="Across Canada" />
             </div>
           </div>
         </div>

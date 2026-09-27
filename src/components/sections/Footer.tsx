@@ -107,7 +107,7 @@ export function Footer() {
                   silverswanintegrated@gmail.com
                 </a>
               </li>
-              <li>Montreal, Quebec, Canada</li>
+              <li>Suite 4, 6970 avenue de Monts, Montreal Quebec</li>
               <li>Mon – Fri: 9AM – 5PM</li>
             </ul>
 

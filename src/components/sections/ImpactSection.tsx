@@ -5,8 +5,8 @@ import { Laptop, Building2, Users, TrendingUp } from 'lucide-react'
 
 // --- Sub-components for cleanliness ---
 const ChartBar = ({ height, label }: { height: string; label: string }) => (
-  <div className="flex flex-col items-center gap-2 group cursor-pointer">
-    <div className="relative w-8 bg-swan-lavender/50 rounded-t-lg h-24 flex items-end overflow-hidden">
+  <div className="flex flex-col items-center gap-1.5 group cursor-pointer">
+    <div className="relative w-8 bg-swan-lavender/50 rounded-t-lg h-20 flex items-end overflow-hidden">
       {/* Animated Bar */}
       <div
         className="w-full bg-swan-blue rounded-t-lg transition-all duration-1000 ease-out group-hover:bg-swan-blue/80"
@@ -59,17 +59,16 @@ export function ImpactSection() {
             />
           </div>
           {/* Floating Chart Card */}
-          <div className="absolute bottom-6 right-4 md:right-6 bg-white p-4 rounded-2xl shadow-xl max-w-[260px] w-full animate-fade-in-up">
-            <div className="mb-4">
-              <h4 className="font-bold text-swan-midnight text-lg">Program Growth</h4>
-              <p className="text-xs text-swan-midnight/50 mt-1">Participants trained over the years</p>
+          <div className="absolute bottom-6 right-4 md:right-6 bg-white p-5 rounded-2xl shadow-xl max-w-[270px] w-full animate-fade-in-up">
+            <div className="mb-5">
+              <h4 className="font-bold text-swan-midnight text-base leading-tight">Program Growth</h4>
+              <p className="text-xs text-swan-midnight/50 mt-0.5">Participants trained over the years</p>
             </div>
 
-            <div className="flex items-end justify-between gap-2 h-24 pb-2">
-              <ChartBar height="35%" label="2020" />
-              <ChartBar height="55%" label="2021" />
-              <ChartBar height="75%" label="2022" />
-              <ChartBar height="100%" label="2023" />
+            <div className="flex items-end justify-around gap-2">
+              <ChartBar height="40%" label="2024" />
+              <ChartBar height="70%" label="2025" />
+              <ChartBar height="100%" label="2026" />
             </div>
           </div>
         </div>
@@ -97,21 +96,21 @@ export function ImpactSection() {
               iconBg="bg-swan-blue/10"
               iconColor="text-swan-blue"
               label="Participants Trained"
-              value="500+"
+              value="100+"
             />
             <StatCard
               icon={Laptop}
               iconBg="bg-swan-lavender"
               iconColor="text-swan-midnight"
               label="Tech Programs"
-              value="25+"
+              value="10+"
             />
             <StatCard
               icon={Building2}
               iconBg="bg-swan-sky/20"
               iconColor="text-swan-blue"
               label="Businesses Supported"
-              value="150+"
+              value="100+"
             />
             <StatCard
               icon={TrendingUp}

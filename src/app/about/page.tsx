@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Shield, Zap, Globe, Menu, LayoutTemplate, ChevronDown } from 'lucide-react'
+import { Shield, Zap, Globe, Menu, LayoutTemplate, ChevronDown, MapPin } from 'lucide-react'
 import { Footer } from '@/components/sections/Footer'
 import Link from 'next/link'
 
@@ -195,8 +195,8 @@ export default function AboutPage() {
 
               {/* Impact Stats Grid */}
               <div className="grid grid-cols-2 gap-4 md:gap-6">
-                <StatCard value="2025" label="Project Launch" />
-                <StatCard value="500+" label="Seniors Supported" />
+                <StatCard value="2024" label="Project Launch" />
+                <StatCard value="100+" label="Seniors Supported" />
                 <StatCard value="2" label="Official Languages" />
                 <StatCard value="∞" label="Connections Made" />
               </div>
@@ -234,6 +234,29 @@ export default function AboutPage() {
                 description="Celebrating diversity through bilingual events (English & French) that connect newcomers with established residents."
               />
             </div>
+          </div>
+        </section>
+
+        {/* 4. LOCATION & HUB INFO */}
+        <section className="pb-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-swan-grey flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-swan-lavender flex items-center justify-center flex-shrink-0 text-swan-blue">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-swan-midnight">Visit Our Hub</h3>
+                <p className="text-swan-midnight/60 text-base mt-1">
+                  Suite 4, 6970 avenue de Monts, Montreal Quebec
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/contact"
+              className="px-6 py-3 bg-swan-blue text-white rounded-full text-sm font-semibold shadow-md hover:bg-swan-blue/90 transition-all whitespace-nowrap"
+            >
+              Contact Us
+            </Link>
           </div>
         </section>
       </main>

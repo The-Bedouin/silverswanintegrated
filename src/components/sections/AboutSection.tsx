@@ -33,7 +33,7 @@ const FloatingFoundedCard = () => (
             </div>
             <div>
                 <p className="text-xs text-swan-midnight/50 font-medium">Community-Driven</p>
-                <p className="text-lg font-bold text-swan-midnight tracking-tight">Since 2020</p>
+                <p className="text-lg font-bold text-swan-midnight tracking-tight">Since 2024</p>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ const FloatingFoundedCard = () => (
 const FloatingMembersBadge = () => (
     <div className="absolute -top-3 -right-3 md:top-4 md:-right-6 bg-swan-midnight text-white rounded-full px-5 py-2.5 shadow-xl z-20 animate-fade-in-up hidden sm:block">
         <p className="text-sm font-bold text-center">
-            500+ Lives <br />
+            100+ Lives <br />
             <span className="text-swan-sky font-normal text-xs">Impacted</span>
         </p>
     </div>
@@ -73,8 +73,7 @@ export function AboutSection() {
                             </span>
                         </h2>
                         <p className="text-lg text-swan-midnight/60 leading-relaxed max-w-lg"> As a proudly
-                            <span className="font-bold text-swan-midnight"> Black-led and Black-serving organization,</span> we believe that digital literacy is a fundamental right. We are dedicated to dismantling systemic barriers by equipping our community with the tools to navigate today&apos;s world with confidence.
-                            in the digital age.
+                            <span className="font-bold text-swan-midnight"> Black-owned, Black-led and Black-serving organization,</span> we believe that digital literacy is a fundamental right. We are dedicated to dismantling systemic barriers by equipping our community with the tools to navigate today&apos;s world with confidence in this digital age.
                         </p>
                         <p className="text-base text-swan-midnight/50 leading-relaxed max-w-lg">
                             Whether that means securely accessing online health resources, navigating essential government services, or scaling a small business, we champion the socio-economic advancement of our community in an open, welcoming environment.

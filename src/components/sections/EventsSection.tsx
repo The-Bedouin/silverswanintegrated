@@ -2,50 +2,53 @@
 
 import Image from 'next/image'
 import { MapPin } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faLaptopCode,
+  faComments,
+  faChampagneGlasses,
+  IconDefinition,
+} from '@fortawesome/free-solid-svg-icons'
 
 // --- Types ---
 interface EventItem {
   id: number
-  month: string
-  day: string
   category: string
   title: string
   location: string
   excerpt: string
   imageUrl: string
+  icon: IconDefinition
 }
 
 // --- Data ---
 const EVENTS: EventItem[] = [
   {
     id: 1,
-    month: 'Date',
-    day: 'TBA',
     category: 'Digital Workshop',
     title: 'Tech for a Better Life: Digital Literacy for Seniors',
-    location: 'Silverswan Hub, Toronto',
+    location: 'Montreal QC',
     excerpt: 'Bridging the digital divide. Join us for a hands-on workshop designed to help elders master smartphones, tablets, and essential apps for daily connection.',
     imageUrl: '/images/techforabetterlifecardpicture.jpg',
+    icon: faLaptopCode,
   },
   {
     id: 2,
-    month: 'Date',
-    day: 'TBA',
     category: 'Panel Discussion',
     title: 'Inclusion in Tech: Voices from the Margins',
     location: 'Virtual Event',
     excerpt: 'A candid conversation on how we can better integrate minority voices into the Canadian technology sector, featuring industry leaders and community advocates.',
     imageUrl: '/images/inclusionintechcardpicture.jpg',
+    icon: faComments,
   },
   {
     id: 3,
-    month: 'Date',
-    day: 'TBA',
     category: 'Community Mixer',
     title: 'Intergenerational Innovation Gala',
-    location: 'Grand Hall, Vancouver',
+    location: 'Montreal QC',
     excerpt: 'Celebrating the power of unity. An evening where youth and elders collaborate on ideas to solve community challenges using modern technology.',
     imageUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop',
+    icon: faChampagneGlasses,
   },
 ]
 
@@ -68,15 +71,10 @@ const EventCard = ({ item }: { item: EventItem }) => (
 
     {/* Content Section */}
     <div className="flex p-4 gap-4 flex-grow bg-white relative z-10">
-      {/* Date Column */}
+      {/* Icon Badge Column */}
       <div className="flex flex-col items-center flex-shrink-0 w-14">
-        <div className="flex flex-col items-center bg-swan-lavender/50 rounded-xl p-2 w-full border border-swan-lavender">
-          <span className="text-[10px] font-bold tracking-widest text-swan-midnight/50 uppercase">
-            {item.month}
-          </span>
-          <span className="text-xl font-bold text-swan-midnight leading-none mt-1">
-            {item.day}
-          </span>
+        <div className="flex items-center justify-center bg-swan-lavender/50 rounded-xl w-14 h-14 border border-swan-lavender text-swan-blue group-hover:bg-swan-blue group-hover:text-white transition-all duration-300 shadow-sm">
+          <FontAwesomeIcon icon={item.icon} className="text-xl" />
         </div>
       </div>
 

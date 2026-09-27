@@ -186,9 +186,8 @@ export default function ContactPage() {
                     color="slate"
                     details={
                       <p>
-                        123 Community Lane,<br />
-                        Montreal, Quebec, H3Z 2Y7<br />
-                        Canada
+                        Suite 4, 6970 avenue de Monts,<br />
+                        Montreal, Quebec
                       </p>
                     }
                   />

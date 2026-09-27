@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { Bricolage_Grotesque, Inter } from 'next/font/google'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+import { config } from '@fortawesome/fontawesome-svg-core'
 import './globals.css'
 import { cn } from '@/lib/utils'
+
+config.autoAddCss = false
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],

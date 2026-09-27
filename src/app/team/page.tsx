@@ -3,331 +3,290 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, ChevronDown, Mail, Linkedin, Heart } from 'lucide-react'
+import { Menu, ChevronDown, Mail, ArrowRight, Quote, Linkedin } from 'lucide-react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Footer } from '@/components/sections/Footer'
 
-// --- Types ---
 interface TeamMember {
-    name: string
-    role: string
-    bio: string
-    quote: string
-    imageUrl: string
-    imageAlt: string
-    email?: string
-    linkedin?: string
-    highlights: string[]
+  name: string
+  role: string
+  bio: string
+  quote: string
+  imageUrl: string
+  imageAlt: string
+  email?: string
+  linkedin?: string
+  highlights: string[]
+  initials: string
 }
 
-// --- Data ---
 const TEAM_MEMBERS: TeamMember[] = [
-    {
-        name: 'Maryam Mohammed',
-        role: 'Founder/Director',
-        bio: 'A passionate advocate for digital inclusion and community empowerment. With over a decade of experience in social services and technology education, they lead Silverswan\'s mission to ensure no senior or newcomer is left behind in the digital age.',
-        quote: 'Technology should be a bridge, never a barrier. Every person deserves the confidence to connect, learn, and thrive.',
-        imageUrl: '',
-        imageAlt: 'Portrait of Maryam Mohammed — Founder and Director of Silverswan Integrated Hub',
-        email: 'silverswanintegrated@gmail.com',
-        highlights: [
-            'Digital Inclusion Strategy',
-            'Community Partnerships',
-            'Bilingual Program Design',
-        ],
-    },
-    {
-        name: 'Ghaffar Abdul-Azeez',
-        role: 'Director',
-        bio: 'A dedicated community builder focused on creating culturally sensitive programs that celebrate diversity. They bring deep expertise in elder care, newcomer integration, and intergenerational programming to every initiative Silverswan delivers.',
-        quote: 'When we invest in our elders and welcome newcomers with dignity, we build a community that lifts everyone.',
-        imageUrl: '',
-        imageAlt: 'Portrait of Ghaffar Abdul-Azeez — Director of Silverswan Integrated Hub',
-        email: 'silverswanintegrated@gmail.com',
-        highlights: [
-            'Elder Care Innovation',
-            'Newcomer Integration',
-            'Cultural Programming',
-        ],
-    },
+  {
+    name: 'Maryam Mohammed',
+    role: 'Founder & Director',
+    bio: 'A passionate advocate for digital inclusion and community empowerment. With over a decade of experience in social services and technology education, Maryam leads Silverswan\'s mission to ensure no senior or newcomer is left behind in the digital age.',
+    quote: 'Technology should be a bridge, never a barrier. Every person deserves the confidence to connect, learn, and thrive.',
+    imageUrl: '',
+    imageAlt: 'Portrait of Maryam Mohammed',
+    email: 'silverswanintegrated@gmail.com',
+    linkedin: 'https://www.linkedin.com',
+    highlights: ['Digital Inclusion', 'Community Partnerships', 'Bilingual Programs'],
+    initials: 'MM',
+  },
+  {
+    name: 'Ghaffar Abdul-Azeez',
+    role: 'Director',
+    bio: 'A dedicated community builder focused on creating culturally sensitive programs that celebrate diversity. Ghaffar brings deep expertise in elder care, newcomer integration, and intergenerational programming.',
+    quote: 'When we invest in our elders and welcome newcomers with dignity, we build a community that lifts everyone.',
+    imageUrl: '',
+    imageAlt: 'Portrait of Ghaffar Abdul-Azeez',
+    email: 'silverswanintegrated@gmail.com',
+    linkedin: 'https://www.linkedin.com',
+    highlights: ['Elder Care', 'Newcomer Integration', 'Cultural Programming'],
+    initials: 'GA',
+  },
 ]
 
-// --- Shared Components (matching site-wide nav) ---
 const Logo = () => (
-    <Link href="/" className="block">
-        <Image
-            src="/logos/logo-lockup-primary-2.png"
-            alt="Silverswan Integrated Hub — Return to homepage"
-            width={180}
-            height={50}
-            className="h-auto w-auto max-h-12"
-            priority
-        />
-    </Link>
+  <Link href="/" className="block">
+    <Image src="/logos/logo-lockup-primary-2.png" alt="Silverswan Integrated Hub" width={160} height={44} className="h-auto w-auto max-h-10" priority />
+  </Link>
 )
 
 const FloatingNav = () => {
-    const [isOpen, setIsOpen] = useState(false)
-
-    return (
-        <nav
-            className="absolute top-8 right-8 z-20 items-center gap-3 hidden md:flex"
-            aria-label="Main navigation"
-        >
-            <div className="relative">
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-swan-midnight flex items-center gap-2 shadow-sm hover:bg-white transition-all"
-                    aria-expanded={isOpen}
-                    aria-haspopup="true"
-                >
-                    All Pages
-                    <ChevronDown
-                        size={14}
-                        className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                        aria-hidden="true"
-                    />
-                </button>
-
-                {isOpen && (
-                    <div
-                        className="absolute top-full mt-2 right-0 w-48 bg-white rounded-xl shadow-xl p-2 flex flex-col gap-1 border border-swan-grey"
-                        role="menu"
-                    >
-                        {[
-                            { label: 'Home', href: '/' },
-                            { label: 'About', href: '/about' },
-                            { label: 'Team', href: '/team' },
-                            { label: 'Contact', href: '/contact' },
-                        ].map((item) => (
-                            <Link
-                                key={item.label}
-                                href={item.href}
-                                className="px-3 py-2 text-sm text-swan-midnight/70 hover:bg-swan-lavender rounded-lg hover:text-swan-midnight text-left block"
-                                role="menuitem"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {item.label}
-                            </Link>
-                        ))}
-                    </div>
-                )}
-            </div>
-
-            <Link
-                href="/contact"
-                className="bg-white/90 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium text-swan-midnight shadow-sm hover:bg-white transition-all"
-            >
-                Contact
-            </Link>
-
-            <Link
-                href="/contact"
-                className="bg-swan-blue text-white px-6 py-2 rounded-full text-sm font-medium shadow-lg hover:bg-swan-blue/90 transition-all"
-            >
-                Join Us
-            </Link>
-        </nav>
-    )
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <nav className="absolute top-8 right-8 z-20 items-center gap-3 hidden md:flex">
+      <div className="relative">
+        <button onClick={() => setIsOpen(!isOpen)} className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-swan-midnight flex items-center gap-2 shadow-sm hover:bg-white transition-all">
+          All Pages <ChevronDown size={13} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        </button>
+        {isOpen && (
+          <div className="absolute top-full mt-2 right-0 w-44 bg-white rounded-xl shadow-xl p-2 flex flex-col gap-0.5 border border-swan-grey">
+            {[{ label: 'Home', href: '/' }, { label: 'About', href: '/about' }, { label: 'Team', href: '/team' }, { label: 'Contact', href: '/contact' }].map((item) => (
+              <Link key={item.label} href={item.href} className="px-3 py-2 text-sm text-swan-midnight/70 hover:bg-swan-lavender rounded-lg hover:text-swan-midnight block" onClick={() => setIsOpen(false)}>{item.label}</Link>
+            ))}
+          </div>
+        )}
+      </div>
+      <Link href="/contact" className="bg-white/90 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium text-swan-midnight shadow-sm hover:bg-white transition-all">Contact</Link>
+      <Link href="/contact" className="bg-swan-blue text-white px-5 py-2 rounded-full text-sm font-medium shadow-lg hover:bg-swan-blue/90 transition-all">Join Us</Link>
+    </nav>
+  )
 }
 
-// --- Team Member Card ---
-const TeamMemberCard = ({ member }: { member: TeamMember }) => (
-    <article
-        className="flex flex-col gap-4"
-        aria-label={`Profile of ${member.name}, ${member.role}`}
-    >
-        {/* Portrait Card — vertical rectangle, floating */}
-        <div className="bg-white rounded-2xl shadow-[0_6px_24px_rgba(0,0,0,0.10)] overflow-hidden">
-            <div className="relative w-full aspect-[4/5] bg-swan-lavender overflow-hidden flex items-center justify-center">
-                {member.imageUrl ? (
-                    <Image
-                        src={member.imageUrl}
-                        alt={member.imageAlt}
-                        fill
-                        className="object-cover object-top"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                ) : (
-                    <svg
-                        className="w-2/3 h-2/3 text-swan-blue/30"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        aria-hidden="true"
-                    >
-                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                    </svg>
-                )}
-            </div>
-        </div>
+const TeamCard = ({ member }: { member: TeamMember }) => (
+  <div className="group relative bg-white rounded-2xl overflow-hidden border border-swan-grey/80 hover:border-swan-blue/20 shadow-sm hover:shadow-xl hover:shadow-swan-blue/8 transition-all duration-400">
+    {/* Header with Light Pattern Design */}
+    <div className="relative h-44 w-full bg-swan-lavender/40 overflow-hidden border-b border-swan-grey/70">
+      <div
+        className="absolute inset-0 pointer-events-none opacity-45"
+        style={{
+          backgroundImage: `url('/logos/patterns-light-blue.png')`,
+          backgroundSize: '240px',
+          backgroundPosition: 'top left',
+          backgroundRepeat: 'repeat',
+        }}
+      />
+      {member.linkedin && (
+        <a
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${member.name} on LinkedIn`}
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm border border-swan-grey/80 flex items-center justify-center text-swan-midnight hover:text-[#0A66C2] hover:bg-white hover:shadow-md transition-all"
+        >
+          <Linkedin className="w-4 h-4" />
+        </a>
+      )}
+    </div>
 
-        {/* Content Card — floating beneath the portrait */}
-        <div className="bg-white rounded-2xl shadow-[0_6px_24px_rgba(0,0,0,0.10)] p-5 md:p-6 space-y-4">
-            {/* Name & Role */}
-            <div>
-                <h2 className="text-xl md:text-2xl font-bold text-swan-midnight leading-tight">
-                    {member.name}
-                </h2>
-                <p className="text-sm md:text-base text-swan-blue font-medium mt-0.5">
-                    {member.role}
-                </p>
-            </div>
+    {/* Floating avatar circle (twice as big: w-32 h-32 / 128px) */}
+    <div className="absolute left-6 sm:left-8 top-28 z-20">
+      <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-swan-midnight flex items-center justify-center relative group-hover:scale-105 transition-transform duration-300">
+        {member.imageUrl ? (
+          <Image
+            src={member.imageUrl}
+            alt={member.imageAlt}
+            fill
+            className="object-cover object-top"
+            sizes="128px"
+          />
+        ) : (
+          <div className="w-full h-full bg-swan-midnight flex flex-col items-center justify-center text-white select-none">
+            <span className="text-3xl font-black text-white tracking-wider">
+              {member.initials}
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
 
-            {/* Bio */}
-            <p className="text-sm md:text-base text-swan-midnight/80 leading-relaxed">
-                {member.bio}
-            </p>
+    {/* Content */}
+    <div className="pt-20 px-6 sm:px-8 pb-7">
+      <div className="mb-2">
+        <h2 className="text-xl font-bold text-swan-midnight leading-tight">{member.name}</h2>
+        <p className="text-xs font-semibold text-swan-blue uppercase tracking-widest mt-1">{member.role}</p>
+      </div>
 
-            {/* Quote */}
-            <blockquote className="relative bg-swan-lavender/40 rounded-xl p-4 md:p-5 border-l-4 border-swan-blue">
-                <p className="text-sm md:text-base text-swan-midnight font-medium italic leading-relaxed">
-                    &ldquo;{member.quote}&rdquo;
-                </p>
-            </blockquote>
+      {/* Highlight tags */}
+      <div className="flex flex-wrap gap-1.5 mt-3.5">
+        {member.highlights.map((h) => (
+          <span key={h} className="px-2.5 py-1 text-[10px] font-semibold text-swan-blue bg-swan-blue/8 border border-swan-blue/15 rounded-full uppercase tracking-wide">
+            {h}
+          </span>
+        ))}
+      </div>
 
-            {/* Specialties */}
-            <div>
-                <h3 className="text-xs font-bold text-swan-midnight/50 uppercase tracking-wider mb-2">
-                    Areas of Focus
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                    {member.highlights.map((highlight) => (
-                        <span
-                            key={highlight}
-                            className="inline-block px-3 py-1.5 bg-swan-blue/10 text-swan-blue text-xs font-semibold rounded-full border border-swan-blue/20"
-                        >
-                            {highlight}
-                        </span>
-                    ))}
-                </div>
-            </div>
+      <p className="mt-4 text-sm text-swan-midnight/70 leading-relaxed">{member.bio}</p>
 
-            {/* Contact links */}
-            <div className="flex flex-col sm:flex-row gap-2 pt-1">
-                {member.email && (
-                    <a
-                        href={`mailto:${member.email}`}
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-swan-blue text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-swan-blue/90 transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-swan-blue/30"
-                        aria-label={`Send an email to ${member.name}`}
-                    >
-                        <Mail className="w-4 h-4" aria-hidden="true" />
-                        <span>Send Email</span>
-                    </a>
-                )}
-                {member.linkedin && (
-                    <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2 px-4 py-2.5 bg-swan-midnight text-white rounded-lg font-semibold text-sm shadow-sm hover:bg-swan-midnight/90 transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-swan-midnight/30"
-                        aria-label={`View ${member.name}'s LinkedIn profile (opens in a new tab)`}
-                    >
-                        <Linkedin className="w-4 h-4" aria-hidden="true" />
-                        <span>LinkedIn Profile</span>
-                    </a>
-                )}
-            </div>
-        </div>
-    </article>
+      {/* Quote */}
+      <div className="mt-4 relative pl-3.5 border-l-2 border-swan-blue/30">
+        <Quote size={12} className="absolute -top-0.5 -left-1 text-swan-blue/30 fill-swan-blue/15" />
+        <p className="text-xs text-swan-midnight/60 italic leading-relaxed">{member.quote}</p>
+      </div>
+
+      {/* Action Links */}
+      <div className="mt-6 pt-4 border-t border-swan-grey/80 flex flex-wrap items-center gap-3">
+        {member.email && (
+          <a
+            href={`mailto:${member.email}`}
+            className="group/btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-swan-midnight hover:bg-swan-blue transition-colors shadow-sm"
+          >
+            <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5" />
+            <span>Get in Touch</span>
+            <ArrowRight size={13} className="transition-transform group-hover/btn:translate-x-0.5" />
+          </a>
+        )}
+        {member.linkedin && (
+          <a
+            href={member.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${member.name} on LinkedIn`}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-swan-midnight bg-swan-lavender hover:bg-[#0A66C2] hover:text-white transition-all border border-swan-grey/80 shadow-sm"
+          >
+            <Linkedin className="w-4 h-4 text-[#0A66C2] group-hover:text-white transition-colors" />
+            <span>LinkedIn</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
 )
 
-// --- Main Page ---
 export default function TeamPage() {
-    return (
-        <div className="min-h-screen flex flex-col bg-swan-ivory font-sans">
-            <main className="flex-grow relative">
-                {/* Mobile Header */}
-                <div className="md:hidden p-6 flex justify-between items-center sticky top-0 bg-swan-ivory z-50 shadow-sm">
-                    <Logo />
-                    <button
-                        className="p-2 text-swan-midnight/60 hover:bg-swan-lavender rounded-full transition-colors"
-                        aria-label="Open navigation menu"
-                    >
-                        <Menu size={24} aria-hidden="true" />
-                    </button>
-                </div>
+  return (
+    <div className="min-h-screen flex flex-col bg-swan-ivory font-sans">
+      <main className="flex-grow relative overflow-x-hidden">
 
-                {/* Desktop Logo */}
-                <div className="hidden md:block px-6 sm:px-10 lg:px-16 pt-6 pb-3">
-                    <Logo />
-                </div>
-
-                {/* Desktop Navigation */}
-                <FloatingNav />
-
-                {/* Page Header — clear, high-contrast, generous sizing */}
-                <header className="pt-6 pb-8 md:pt-8 md:pb-12 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
-                    {/* Decorative blob */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-swan-lavender rounded-full blur-3xl -z-10 opacity-40 pointer-events-none" />
-
-                    <div className="max-w-3xl mx-auto relative z-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-swan-blue/10 text-swan-blue text-xs font-bold tracking-wider uppercase mb-6 animate-fade-in">
-                            <Heart className="w-3.5 h-3.5" aria-hidden="true" />
-                            Our Leadership
-                        </div>
-
-                        <h1 className="text-3xl md:text-5xl font-bold text-swan-midnight tracking-tight mb-4 leading-[1.1]">
-                            Meet the People{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-swan-blue to-swan-sky">
-                                Behind the Mission.
-                            </span>
-                        </h1>
-
-                        <p className="text-base md:text-lg text-swan-midnight/50 leading-relaxed max-w-2xl mx-auto">
-                            Silverswan is led by people who believe that empowering seniors and newcomers
-                            through technology and community is not just a program — it&apos;s a responsibility.
-                        </p>
-                    </div>
-                </header>
-
-                {/* Team Member Cards — two-column grid on desktop, stacked on mobile */}
-                <section
-                    className="px-4 sm:px-6 lg:px-8 pb-12 md:pb-20"
-                    aria-label="Team members"
-                >
-                    <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                        {TEAM_MEMBERS.map((member) => (
-                            <TeamMemberCard key={member.name} member={member} />
-                        ))}
-                    </div>
-                </section>
-
-                {/* Closing Statement — warm, accessible call to action */}
-                <section className="bg-swan-midnight py-12 md:py-16 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
-                    {/* Grid pattern */}
-                    <div
-                        className="absolute inset-0 pointer-events-none z-0 opacity-[0.06]"
-                        style={{
-                            backgroundImage: `linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)`,
-                            backgroundSize: '40px 40px',
-                        }}
-                    />
-
-                    <div className="max-w-3xl mx-auto relative z-10">
-                        <h2 className="text-2xl md:text-4xl font-bold text-white tracking-tight mb-4 leading-tight">
-                            Want to Join Our Mission?
-                        </h2>
-                        <p className="text-base md:text-lg text-white/70 leading-relaxed mb-6 max-w-xl mx-auto">
-                            Whether you want to volunteer, partner, or simply learn more, we would love to hear from you.
-                        </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-swan-blue text-white rounded-full font-bold text-sm shadow-xl hover:bg-swan-blue/90 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-swan-blue/40"
-                            >
-                                Get in Touch
-                            </Link>
-                            <Link
-                                href="/about"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full font-bold text-sm hover:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/30"
-                            >
-                                Learn About Us
-                            </Link>
-                        </div>
-                    </div>
-                </section>
-
-            </main>
-            <Footer />
+        {/* Mobile header */}
+        <div className="md:hidden p-5 flex justify-between items-center sticky top-0 bg-swan-ivory/95 backdrop-blur-sm z-50 border-b border-swan-grey/60">
+          <Logo />
+          <button className="p-2 text-swan-midnight/50 hover:bg-swan-lavender rounded-full" aria-label="Open menu"><Menu size={22} /></button>
         </div>
-    )
+
+        {/* Desktop logo */}
+        <div className="hidden md:block px-8 lg:px-16 pt-6 pb-3 relative z-10"><Logo /></div>
+        <FloatingNav />
+
+        {/* ── HERO ── */}
+        <header className="relative px-4 sm:px-8 lg:px-16 pt-8 pb-20 overflow-hidden bg-swan-midnight">
+          <div className="relative z-10 max-w-5xl mx-auto">
+            <div className="max-w-2xl">
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3 mb-6">
+                <span className="block w-8 h-px bg-swan-sky/60" />
+                <span className="text-swan-sky/80 text-xs font-bold tracking-[0.2em] uppercase">Silverswan Leadership</span>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.08] tracking-tight">
+                Built by people <br />
+                <span className="italic font-light text-swan-sky">who genuinely care.</span>
+              </h1>
+
+              <p className="mt-5 text-base md:text-lg text-white/60 leading-relaxed max-w-xl">
+                Our leadership team brings lived experience, community roots, and a shared belief that every senior and newcomer deserves a real seat at the digital table.
+              </p>
+
+              {/* Compact stat row */}
+              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+                {[
+                  { n: '2024', l: 'Est.' },
+                  { n: '100+', l: 'Members served' },
+                  { n: '2', l: 'Languages' },
+                  { n: 'MTL', l: 'Montreal QC' },
+                ].map((s) => (
+                  <div key={s.l} className="flex items-baseline gap-2">
+                    <span className="text-2xl font-black text-white tabular-nums">{s.n}</span>
+                    <span className="text-xs text-white/40 uppercase tracking-wide">{s.l}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quote strip */}
+            <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 max-w-[280px]">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                <Quote size={18} className="text-swan-sky/50 fill-swan-sky/20 mb-3" />
+                <p className="text-white/70 text-sm italic leading-relaxed">
+                  &ldquo;We don&apos;t just provide services; we build capacity and connection.&rdquo;
+                </p>
+                <div className="mt-4 flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-full bg-swan-blue flex items-center justify-center text-white text-[10px] font-bold">MM</div>
+                  <span className="text-white/50 text-xs">Maryam Mohammed, Founder</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* ── TEAM CARDS ── */}
+        <section className="px-4 sm:px-8 lg:px-16 py-16 md:py-20" aria-label="Team members">
+          <div className="max-w-5xl mx-auto">
+
+            {/* Section label */}
+            <div className="flex items-center gap-4 mb-10">
+              <span className="text-xs font-bold text-swan-midnight/40 uppercase tracking-widest">Our Team</span>
+              <div className="flex-1 h-px bg-swan-grey" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {TEAM_MEMBERS.map((member) => (
+                <TeamCard key={member.name} member={member} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+
+        {/* ── CTA ── */}
+        <section className="px-4 sm:px-8 lg:px-16 py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-swan-ivory via-swan-lavender/30 to-swan-ivory" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-swan-blue/8 rounded-full blur-3xl" />
+          <div className="relative z-10 max-w-2xl mx-auto text-center">
+            <p className="text-xs text-swan-midnight/40 font-bold uppercase tracking-widest mb-4">Ready to connect?</p>
+            <h2 className="text-3xl md:text-4xl font-black text-swan-midnight leading-tight mb-4">
+              Become part of the <span className="text-swan-blue">Silverswan</span> family.
+            </h2>
+            <p className="text-base text-swan-midnight/50 leading-relaxed mb-8 max-w-lg mx-auto">
+              Whether you want to volunteer, partner, or just say hello &mdash; our doors are open and our team is here.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link href="/contact" className="group inline-flex items-center gap-2 px-7 py-3.5 bg-swan-blue text-white rounded-full font-bold text-sm shadow-lg hover:bg-swan-blue/90 hover:shadow-xl hover:shadow-swan-blue/25 transition-all duration-300">
+                <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5" />
+                Get in Touch
+                <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link href="/about" className="inline-flex items-center gap-2 px-7 py-3.5 border border-swan-midnight/15 text-swan-midnight rounded-full font-semibold text-sm hover:border-swan-midnight/30 hover:bg-white transition-all duration-300">
+                About Silverswan
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  )
 }

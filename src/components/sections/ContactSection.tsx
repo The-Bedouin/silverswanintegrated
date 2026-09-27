@@ -129,7 +129,7 @@ export function ContactSection() {
               <ContactCard
                 icon={MapPin}
                 title="Visit Us"
-                value="Montreal, Quebec, Canada"
+                value="Suite 4, 6970 avenue de Monts, Montreal Quebec"
                 color="sky"
               />
             </div>
