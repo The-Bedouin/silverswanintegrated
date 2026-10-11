@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MapPin, Clock, Send, ArrowRight, ChevronDown, Menu, LayoutTemplate } from 'lucide-react'
+import { Mail, MapPin, Clock, Send, ArrowRight, ChevronDown, Menu, LayoutTemplate, Instagram } from 'lucide-react'
 import { Footer } from '@/components/sections/Footer'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,7 +10,7 @@ import Image from 'next/image'
 const Logo = () => (
   <Link href="/" className="block">
     <Image
-      src="/logos/logo-lockup-primary-2.png"
+      src="/logos/silverswanlogo.png"
       alt="Silverswan Logo"
       width={180}
       height={50}
@@ -181,12 +181,26 @@ export default function ContactPage() {
                     }
                   />
                   <ContactInfoItem
+                    icon={Instagram}
+                    title="Instagram"
+                    color="blue"
+                    details={
+                      <a
+                        href="https://www.instagram.com/silverswan_integratedhub?stkn=dXpyMXIxaXlsanNp&utm_source=qr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-swan-blue transition-colors hover:underline decoration-swan-sky underline-offset-4"
+                      >
+                        @silverswan_integratedhub
+                      </a>
+                    }
+                  />
+                  <ContactInfoItem
                     icon={MapPin}
-                    title="Visit Our Hub"
+                    title="Location"
                     color="slate"
                     details={
                       <p>
-                        Suite 4, 6970 avenue de Monts,<br />
                         Montreal, Quebec
                       </p>
                     }

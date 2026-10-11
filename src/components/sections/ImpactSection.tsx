@@ -96,7 +96,7 @@ export function ImpactSection() {
               iconBg="bg-swan-blue/10"
               iconColor="text-swan-blue"
               label="Participants Trained"
-              value="100+"
+              value="50+"
             />
             <StatCard
               icon={Laptop}
@@ -110,7 +110,7 @@ export function ImpactSection() {
               iconBg="bg-swan-sky/20"
               iconColor="text-swan-blue"
               label="Businesses Supported"
-              value="100+"
+              value="20+"
             />
             <StatCard
               icon={TrendingUp}

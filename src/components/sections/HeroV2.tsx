@@ -1,13 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import {
   ArrowRight,
   ChevronDown,
   Menu,
-  Users,
-  MapPin,
   Sparkles,
   Quote,
 } from 'lucide-react'
@@ -16,7 +14,7 @@ import {
 const Logo = () => (
   <a href="/" className="block">
     <Image
-      src="/logos/logo-lockup-primary-2.png"
+      src="/logos/silverswanlogo.png"
       alt="Silverswan Logo"
       width={180}
       height={50}
@@ -26,40 +24,7 @@ const Logo = () => (
   </a>
 )
 
-// 2. Avatar Group Component
-const AvatarGroup = () => {
-  const avatars = [
-    'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=200&auto=format&fit=crop&crop=faces',
-    'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=200&auto=format&fit=crop&crop=faces',
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop&crop=faces',
-  ]
-
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex -space-x-3">
-        {avatars.map((src, i) => (
-          <div
-            key={i}
-            className="w-9 h-9 rounded-full border-2 border-white overflow-hidden bg-swan-lavender"
-          >
-            <Image
-              src={src}
-              alt={`Community member ${i + 1}`}
-              width={36}
-              height={36}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-      <span className="text-white/80 text-sm font-medium">
-        100+ Active participants
-      </span>
-    </div>
-  )
-}
-
-// 3. Floating Navigation Pills
+// 2. Floating Navigation Pills
 const FloatingNav = () => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -118,27 +83,6 @@ const FloatingNav = () => {
     </nav>
   )
 }
-
-// 4. Floating stat pill
-const StatPill = ({
-  icon: Icon,
-  value,
-  label,
-}: {
-  icon: any
-  value: string
-  label: string
-}) => (
-  <div className="flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2.5 rounded-full shadow-lg">
-    <div className="w-7 h-7 rounded-full bg-swan-blue/70 flex items-center justify-center flex-shrink-0">
-      <Icon size={13} className="text-white" />
-    </div>
-    <div>
-      <p className="text-white font-bold text-sm leading-none">{value}</p>
-      <p className="text-white/60 text-[10px] leading-none mt-0.5">{label}</p>
-    </div>
-  </div>
-)
 
 // --- Main Hero V2 Component ---
 export function HeroV2() {
@@ -240,20 +184,7 @@ export function HeroV2() {
                 </a>
               </div>
 
-              {/* Social proof */}
-              <div className="mt-6">
-                <AvatarGroup />
-              </div>
             </div>
-          </div>
-        </div>
-
-        {/* ── STAT PILLS — anchored to bottom ── */}
-        <div className="absolute bottom-12 left-0 right-0 z-20 flex justify-center">
-          <div className="flex flex-wrap items-center justify-center gap-3 px-4">
-            <StatPill icon={Users} value="100+" label="Members served" />
-            <StatPill icon={MapPin} value="Montreal QC" label="Hub Location" />
-            <StatPill icon={Sparkles} value="Since 2024" label="Community driven" />
           </div>
         </div>
 

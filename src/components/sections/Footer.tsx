@@ -63,7 +63,7 @@ export function Footer() {
             <div className="mb-5">
               <Link href="/" className="block">
                 <Image
-                  src="/logos/logo-lockup-primary-1.png"
+                  src="/logos/silverswanlogo.png"
                   alt="Silverswan Logo"
                   width={200}
                   height={60}
@@ -71,10 +71,21 @@ export function Footer() {
                 />
               </Link>
             </div>
-            <p className="text-white/70 text-sm leading-relaxed max-w-sm mb-8">
+            <p className="text-white/70 text-sm leading-relaxed max-w-sm mb-6">
               Advancing digital inclusion for seniors and diverse communities across Canada through
               technology training, business support, and community connection.
             </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.instagram.com/silverswan_integratedhub?stkn=dXpyMXIxaXlsanNp&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Silverswan Integrated Hub on Instagram"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] flex items-center justify-center text-white/80 hover:text-white transition-all shadow-sm"
+              >
+                <InstagramIcon />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -107,8 +118,19 @@ export function Footer() {
                   silverswanintegrated@gmail.com
                 </a>
               </li>
-              <li>Suite 4, 6970 avenue de Monts, Montreal Quebec</li>
+              <li>Montreal Quebec</li>
               <li>Mon – Fri: 9AM – 5PM</li>
+              <li>
+                <a
+                  href="https://www.instagram.com/silverswan_integratedhub?stkn=dXpyMXIxaXlsanNp&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 hover:text-white transition-colors"
+                >
+                  <InstagramIcon />
+                  <span>Instagram</span>
+                </a>
+              </li>
             </ul>
 
             {/* Newsletter mini CTA */}
@@ -135,10 +157,23 @@ export function Footer() {
       <div className="border-t border-white/15">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex flex-col-reverse items-center justify-between gap-3 md:flex-row text-xs text-white/50">
           <p>© {year} Silverswan Integrated Hub. All rights reserved.</p>
-          <p className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse" />
-            <span>Where Innovation Meets Inclusion.</span>
-          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.instagram.com/silverswan_integratedhub?stkn=dXpyMXIxaXlsanNp&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Silverswan on Instagram"
+              className="hover:text-white flex items-center gap-1.5 transition-colors"
+            >
+              <InstagramIcon />
+              <span>Instagram</span>
+            </a>
+            <span className="text-white/20">•</span>
+            <p className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-white/40 animate-pulse" />
+              <span>Where Innovation Meets Inclusion.</span>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

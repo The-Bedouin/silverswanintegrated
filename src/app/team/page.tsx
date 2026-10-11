@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, ChevronDown, Mail, ArrowRight, Quote, Linkedin } from 'lucide-react'
+import { Menu, ChevronDown, Mail, ArrowRight, Quote } from 'lucide-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Footer } from '@/components/sections/Footer'
@@ -15,6 +15,7 @@ interface TeamMember {
   quote: string
   imageUrl: string
   imageAlt: string
+  imagePosition?: string
   email?: string
   linkedin?: string
   highlights: string[]
@@ -27,30 +28,30 @@ const TEAM_MEMBERS: TeamMember[] = [
     role: 'Founder & Director',
     bio: 'A passionate advocate for digital inclusion and community empowerment. With over a decade of experience in social services and technology education, Maryam leads Silverswan\'s mission to ensure no senior or newcomer is left behind in the digital age.',
     quote: 'Technology should be a bridge, never a barrier. Every person deserves the confidence to connect, learn, and thrive.',
-    imageUrl: '',
+    imageUrl: '/images/maryam mohammed.jpeg',
     imageAlt: 'Portrait of Maryam Mohammed',
+    imagePosition: 'center 15%',
     email: 'silverswanintegrated@gmail.com',
-    linkedin: 'https://www.linkedin.com',
-    highlights: ['Digital Inclusion', 'Community Partnerships', 'Bilingual Programs'],
+    highlights: ['Digital Inclusion', 'Community Partnerships', 'Mentorship'],
     initials: 'MM',
   },
   {
-    name: 'Ghaffar Abdul-Azeez',
-    role: 'Director',
-    bio: 'A dedicated community builder focused on creating culturally sensitive programs that celebrate diversity. Ghaffar brings deep expertise in elder care, newcomer integration, and intergenerational programming.',
+    name: 'Sophie Kanza',
+    role: 'Director of Strategic Initiative',
+    bio: 'A dedicated community builder focused on creating culturally sensitive programs that celebrate diversity. Sophie brings deep expertise in bilingual programs, newcomer integration, and intergenerational programming.',
     quote: 'When we invest in our elders and welcome newcomers with dignity, we build a community that lifts everyone.',
-    imageUrl: '',
-    imageAlt: 'Portrait of Ghaffar Abdul-Azeez',
+    imageUrl: '/images/sophie kanza.jpeg',
+    imageAlt: 'Portrait of Sophie Kanza',
+    imagePosition: 'center 20%',
     email: 'silverswanintegrated@gmail.com',
-    linkedin: 'https://www.linkedin.com',
-    highlights: ['Elder Care', 'Newcomer Integration', 'Cultural Programming'],
-    initials: 'GA',
+    highlights: ['Bilingual Programs', 'Newcomer Integration', 'Cultural Programming'],
+    initials: 'SK',
   },
 ]
 
 const Logo = () => (
   <Link href="/" className="block">
-    <Image src="/logos/logo-lockup-primary-2.png" alt="Silverswan Integrated Hub" width={160} height={44} className="h-auto w-auto max-h-10" priority />
+    <Image src="/logos/silverswanlogo.png" alt="Silverswan Integrated Hub" width={160} height={44} className="h-auto w-auto max-h-10" priority />
   </Link>
 )
 
@@ -77,45 +78,36 @@ const FloatingNav = () => {
 }
 
 const TeamCard = ({ member }: { member: TeamMember }) => (
-  <div className="group relative bg-white rounded-2xl overflow-hidden border border-swan-grey/80 hover:border-swan-blue/20 shadow-sm hover:shadow-xl hover:shadow-swan-blue/8 transition-all duration-400">
+  <div className="group relative bg-white rounded-2xl overflow-hidden border border-swan-grey/80 hover:border-swan-blue/20 shadow-sm hover:shadow-lg hover:shadow-swan-blue/8 transition-all duration-300">
     {/* Header with Light Pattern Design */}
-    <div className="relative h-44 w-full bg-swan-lavender/40 overflow-hidden border-b border-swan-grey/70">
+    <div className="relative h-24 w-full bg-swan-lavender/40 overflow-hidden border-b border-swan-grey/70">
       <div
         className="absolute inset-0 pointer-events-none opacity-45"
         style={{
           backgroundImage: `url('/logos/patterns-light-blue.png')`,
-          backgroundSize: '240px',
+          backgroundSize: '200px',
           backgroundPosition: 'top left',
           backgroundRepeat: 'repeat',
         }}
       />
-      {member.linkedin && (
-        <a
-          href={member.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${member.name} on LinkedIn`}
-          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm border border-swan-grey/80 flex items-center justify-center text-swan-midnight hover:text-[#0A66C2] hover:bg-white hover:shadow-md transition-all"
-        >
-          <Linkedin className="w-4 h-4" />
-        </a>
-      )}
     </div>
 
-    {/* Floating avatar circle (twice as big: w-32 h-32 / 128px) */}
-    <div className="absolute left-6 sm:left-8 top-28 z-20">
-      <div className="w-32 h-32 rounded-full border-4 border-white shadow-lg overflow-hidden bg-swan-midnight flex items-center justify-center relative group-hover:scale-105 transition-transform duration-300">
+    {/* Floating avatar circle */}
+    <div className="absolute left-5 sm:left-6 top-14 z-20">
+      <div className="w-20 h-20 rounded-full border-2 border-white shadow-md overflow-hidden bg-swan-midnight flex items-center justify-center relative group-hover:scale-105 transition-transform duration-300">
         {member.imageUrl ? (
           <Image
             src={member.imageUrl}
             alt={member.imageAlt}
             fill
-            className="object-cover object-top"
-            sizes="128px"
+            className="object-cover"
+            style={{ objectPosition: member.imagePosition || 'center top' }}
+            sizes="80px"
+            priority
           />
         ) : (
           <div className="w-full h-full bg-swan-midnight flex flex-col items-center justify-center text-white select-none">
-            <span className="text-3xl font-black text-white tracking-wider">
+            <span className="text-xl font-black text-white tracking-wider">
               {member.initials}
             </span>
           </div>
@@ -124,51 +116,37 @@ const TeamCard = ({ member }: { member: TeamMember }) => (
     </div>
 
     {/* Content */}
-    <div className="pt-20 px-6 sm:px-8 pb-7">
+    <div className="pt-10 px-5 sm:px-6 pb-5">
       <div className="mb-2">
-        <h2 className="text-xl font-bold text-swan-midnight leading-tight">{member.name}</h2>
-        <p className="text-xs font-semibold text-swan-blue uppercase tracking-widest mt-1">{member.role}</p>
+        <h2 className="text-lg font-bold text-swan-midnight leading-tight">{member.name}</h2>
+        <p className="text-[11px] font-semibold text-swan-blue uppercase tracking-widest mt-0.5">{member.role}</p>
       </div>
 
       {/* Highlight tags */}
-      <div className="flex flex-wrap gap-1.5 mt-3.5">
+      <div className="flex flex-wrap gap-1 mt-2">
         {member.highlights.map((h) => (
-          <span key={h} className="px-2.5 py-1 text-[10px] font-semibold text-swan-blue bg-swan-blue/8 border border-swan-blue/15 rounded-full uppercase tracking-wide">
+          <span key={h} className="px-2 py-0.5 text-[9px] font-semibold text-swan-blue bg-swan-blue/8 border border-swan-blue/15 rounded-full uppercase tracking-wide">
             {h}
           </span>
         ))}
       </div>
 
-      <p className="mt-4 text-sm text-swan-midnight/70 leading-relaxed">{member.bio}</p>
-
       {/* Quote */}
-      <div className="mt-4 relative pl-3.5 border-l-2 border-swan-blue/30">
-        <Quote size={12} className="absolute -top-0.5 -left-1 text-swan-blue/30 fill-swan-blue/15" />
+      <div className="mt-3 relative pl-3 border-l-2 border-swan-blue/30">
+        <Quote size={10} className="absolute -top-0.5 -left-1 text-swan-blue/30 fill-swan-blue/15" />
         <p className="text-xs text-swan-midnight/60 italic leading-relaxed">{member.quote}</p>
       </div>
 
       {/* Action Links */}
-      <div className="mt-6 pt-4 border-t border-swan-grey/80 flex flex-wrap items-center gap-3">
+      <div className="mt-4 pt-3 border-t border-swan-grey/80 flex flex-wrap items-center gap-2">
         {member.email && (
           <a
             href={`mailto:${member.email}`}
-            className="group/btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white bg-swan-midnight hover:bg-swan-blue transition-colors shadow-sm"
+            className="group/btn inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-white bg-swan-midnight hover:bg-swan-blue transition-colors shadow-sm"
           >
-            <FontAwesomeIcon icon={faEnvelope} className="w-3.5 h-3.5" />
+            <FontAwesomeIcon icon={faEnvelope} className="w-3 h-3" />
             <span>Get in Touch</span>
-            <ArrowRight size={13} className="transition-transform group-hover/btn:translate-x-0.5" />
-          </a>
-        )}
-        {member.linkedin && (
-          <a
-            href={member.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${member.name} on LinkedIn`}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-swan-midnight bg-swan-lavender hover:bg-[#0A66C2] hover:text-white transition-all border border-swan-grey/80 shadow-sm"
-          >
-            <Linkedin className="w-4 h-4 text-[#0A66C2] group-hover:text-white transition-colors" />
-            <span>LinkedIn</span>
+            <ArrowRight size={11} className="transition-transform group-hover/btn:translate-x-0.5" />
           </a>
         )}
       </div>
@@ -214,7 +192,6 @@ export default function TeamPage() {
               <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
                 {[
                   { n: '2024', l: 'Est.' },
-                  { n: '100+', l: 'Members served' },
                   { n: '2', l: 'Languages' },
                   { n: 'MTL', l: 'Montreal QC' },
                 ].map((s) => (
@@ -233,9 +210,18 @@ export default function TeamPage() {
                 <p className="text-white/70 text-sm italic leading-relaxed">
                   &ldquo;We don&apos;t just provide services; we build capacity and connection.&rdquo;
                 </p>
-                <div className="mt-4 flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-swan-blue flex items-center justify-center text-white text-[10px] font-bold">MM</div>
-                  <span className="text-white/50 text-xs">Maryam Mohammed, Founder</span>
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full overflow-hidden relative border border-white/30 flex-shrink-0 shadow-sm">
+                    <Image
+                      src="/images/maryam mohammed.jpeg"
+                      alt="Maryam Mohammed"
+                      fill
+                      className="object-cover"
+                      style={{ objectPosition: 'center 15%' }}
+                      sizes="36px"
+                    />
+                  </div>
+                  <span className="text-white/70 text-xs font-medium">Maryam Mohammed, Founder</span>
                 </div>
               </div>
             </div>
@@ -243,11 +229,11 @@ export default function TeamPage() {
         </header>
 
         {/* ── TEAM CARDS ── */}
-        <section className="px-4 sm:px-8 lg:px-16 py-16 md:py-20" aria-label="Team members">
+        <section className="px-4 sm:px-8 lg:px-16 py-10 md:py-14" aria-label="Team members">
           <div className="max-w-5xl mx-auto">
 
             {/* Section label */}
-            <div className="flex items-center gap-4 mb-10">
+            <div className="flex items-center gap-4 mb-6">
               <span className="text-xs font-bold text-swan-midnight/40 uppercase tracking-widest">Our Team</span>
               <div className="flex-1 h-px bg-swan-grey" />
             </div>

@@ -99,6 +99,25 @@
   animation: scroll-right 60s linear infinite;
 }
 
+@keyframes infinite-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-marquee {
+  display: flex;
+  width: max-content;
+  animation: infinite-marquee 20s linear infinite;
+}
+
+.animate-infinite-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Shift the support-section image so its right edge aligns with the viewport edge */
 @media (min-width: 1024px) {
   .support-image-flush-right {

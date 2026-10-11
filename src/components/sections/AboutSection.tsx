@@ -39,14 +39,6 @@ const FloatingFoundedCard = () => (
     </div>
 )
 
-const FloatingMembersBadge = () => (
-    <div className="absolute -top-3 -right-3 md:top-4 md:-right-6 bg-swan-midnight text-white rounded-full px-5 py-2.5 shadow-xl z-20 animate-fade-in-up hidden sm:block">
-        <p className="text-sm font-bold text-center">
-            100+ Lives <br />
-            <span className="text-swan-sky font-normal text-xs">Impacted</span>
-        </p>
-    </div>
-)
 
 // --- Main Component ---
 export function AboutSection() {
@@ -126,7 +118,6 @@ export function AboutSection() {
 
                     {/* Floating Elements */}
                     <FloatingFoundedCard />
-                    <FloatingMembersBadge />
                 </div>
             </div>
         </section>

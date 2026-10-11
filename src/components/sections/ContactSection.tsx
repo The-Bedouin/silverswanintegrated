@@ -1,6 +1,6 @@
 'use client'
 
-import { Mail, MapPin, Send, ArrowRight } from 'lucide-react'
+import { Mail, MapPin, Send, ArrowRight, Instagram } from 'lucide-react'
 
 // --- Helper Components ---
 const InputField = ({
@@ -127,9 +127,16 @@ export function ContactSection() {
                 color="blue"
               />
               <ContactCard
+                icon={Instagram}
+                title="Instagram"
+                value="@silverswan_integratedhub"
+                href="https://www.instagram.com/silverswan_integratedhub?stkn=dXpyMXIxaXlsanNp&utm_source=qr"
+                color="sky"
+              />
+              <ContactCard
                 icon={MapPin}
-                title="Visit Us"
-                value="Suite 4, 6970 avenue de Monts, Montreal Quebec"
+                title="Location"
+                value="Montreal Quebec"
                 color="sky"
               />
             </div>

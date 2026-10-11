@@ -10,7 +10,7 @@ import Link from 'next/link'
 const Logo = () => (
   <Link href="/" className="block">
     <Image
-      src="/logos/logo-lockup-primary-2.png"
+      src="/logos/silverswanlogo.png"
       alt="Silverswan Logo"
       width={180}
       height={50}
@@ -85,12 +85,6 @@ const FloatingNav = () => {
 }
 
 // --- COMPONENTS ---
-const StatCard = ({ value, label }: { value: string; label: string }) => (
-  <div className="text-center p-4 bg-swan-lavender/30 rounded-3xl border border-swan-lavender">
-    <p className="text-3xl md:text-4xl font-bold text-swan-blue mb-2">{value}</p>
-    <p className="text-sm md:text-base text-swan-midnight/60 font-medium">{label}</p>
-  </div>
-)
 
 const ValueCard = ({
   icon: Icon,
@@ -148,8 +142,8 @@ export default function AboutPage() {
 
             <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=2000&auto=format&fit=crop"
-                alt="Smiling Black woman enjoying time with her community"
+                src="/images/seniorsholdinghands.jpg"
+                alt="Seniors holding hands in community"
                 fill
                 className="object-cover"
                 priority
@@ -193,12 +187,14 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Impact Stats Grid */}
-              <div className="grid grid-cols-2 gap-4 md:gap-6">
-                <StatCard value="2024" label="Project Launch" />
-                <StatCard value="100+" label="Seniors Supported" />
-                <StatCard value="2" label="Official Languages" />
-                <StatCard value="∞" label="Connections Made" />
+              {/* Section Image */}
+              <div className="relative w-full aspect-[4/3] sm:aspect-[5/4] rounded-3xl overflow-hidden shadow-xl border border-swan-grey/80">
+                <Image
+                  src="/images/seniorcouple.jpg"
+                  alt="Senior couple smiling together"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
@@ -245,9 +241,9 @@ export default function AboutPage() {
                 <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-swan-midnight">Visit Our Hub</h3>
+                <h3 className="text-xl font-bold text-swan-midnight">Location</h3>
                 <p className="text-swan-midnight/60 text-base mt-1">
-                  Suite 4, 6970 avenue de Monts, Montreal Quebec
+                  Montreal Quebec
                 </p>
               </div>
             </div>

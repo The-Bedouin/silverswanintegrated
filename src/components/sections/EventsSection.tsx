@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faLaptopCode,
   faComments,
-  faChampagneGlasses,
+  faMicrophone,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -43,12 +43,12 @@ const EVENTS: EventItem[] = [
   },
   {
     id: 3,
-    category: 'Community Mixer',
-    title: 'Intergenerational Innovation Gala',
+    category: 'Community Storytelling',
+    title: 'Senior Voices: Stories • Wisdom • Perspectives',
     location: 'Montreal QC',
-    excerpt: 'Celebrating the power of unity. An evening where youth and elders collaborate on ideas to solve community challenges using modern technology.',
-    imageUrl: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop',
-    icon: faChampagneGlasses,
+    excerpt: 'Creating meaningful opportunities for seniors to share their stories, wisdom, experiences, and perspectives while connecting with their communities and inspiring future generations.',
+    imageUrl: '/images/seniorshugging.jpg',
+    icon: faMicrophone,
   },
 ]
 
