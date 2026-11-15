@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Heart, Globe, Sparkles, Users, ArrowRight } from 'lucide-react'
+import { useLanguage } from '@/context/LanguageContext'
 
 // --- Sub-components ---
 
@@ -25,14 +26,14 @@ const ValueCard = ({
     </div>
 )
 
-const FloatingFoundedCard = () => (
+const FloatingFoundedCard = ({ label }: { label: string }) => (
     <div className="absolute -bottom-4 -left-4 md:bottom-6 md:-left-6 bg-white rounded-2xl p-4 shadow-xl z-20 animate-fade-in-up">
         <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-swan-blue to-swan-sky flex items-center justify-center">
                 <Heart className="w-5 h-5 text-white fill-white" />
             </div>
             <div>
-                <p className="text-xs text-swan-midnight/50 font-medium">Community-Driven</p>
+                <p className="text-xs text-swan-midnight/50 font-medium">{label}</p>
                 <p className="text-lg font-bold text-swan-midnight tracking-tight">Since 2024</p>
             </div>
         </div>
@@ -42,6 +43,8 @@ const FloatingFoundedCard = () => (
 
 // --- Main Component ---
 export function AboutSection() {
+    const { t } = useLanguage()
+
     return (
         <section className="min-h-screen flex flex-col justify-center py-8 lg:py-16 px-4 md:px-8 lg:px-16 bg-swan-ivory relative overflow-hidden">
             {/* Subtle decorative blobs */}
@@ -53,22 +56,22 @@ export function AboutSection() {
                 <div className="flex flex-col gap-6 order-2 lg:order-1">
                     {/* Badge */}
                     <div className="self-start px-4 py-1.5 rounded-full border border-swan-blue/20 bg-swan-blue/10 text-xs font-semibold text-swan-blue tracking-wide uppercase">
-                        Who We Are
+                        {t.about.badge}
                     </div>
 
                     {/* Heading & Mission */}
                     <div className="space-y-4">
                         <h2 className="text-3xl md:text-4xl font-bold text-swan-midnight leading-[1.15] tracking-tight">
-                            Building Bridges,{' '}
+                            {t.about.titlePart1}{' '}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-swan-blue to-swan-sky">
-                                Not Barriers.
+                                {t.about.titleHighlight}
                             </span>
                         </h2>
-                        <p className="text-lg text-swan-midnight/60 leading-relaxed max-w-lg"> As a proudly
-                            <span className="font-bold text-swan-midnight"> Black-owned, Black-led and Black-serving organization,</span> we believe that digital literacy is a fundamental right. We are dedicated to dismantling systemic barriers by equipping our community with the tools to navigate today&apos;s world with confidence in this digital age.
+                        <p className="text-lg text-swan-midnight/60 leading-relaxed max-w-lg">
+                            <span className="font-bold text-swan-midnight"> {t.about.text1Bold}</span> {t.about.text1Rest}
                         </p>
                         <p className="text-base text-swan-midnight/50 leading-relaxed max-w-lg">
-                            Whether that means securely accessing online health resources, navigating essential government services, or scaling a small business, we champion the socio-economic advancement of our community in an open, welcoming environment.
+                            {t.about.text2}
                         </p>
                     </div>
 
@@ -76,18 +79,18 @@ export function AboutSection() {
                     <div className="space-y-3 mt-2">
                         <ValueCard
                             icon={Globe}
-                            title="Digital Health & Connection."
-                            description="Equipping individuals with the confidence to use telehealth and vital government platforms (like the CRA and Service Canada) to improve daily life."
+                            title={t.about.v1Title}
+                            description={t.about.v1Desc}
                         />
                         <ValueCard
                             icon={Users}
-                            title="Intergenerational Impact"
-                            description="Bridging the gap between youth and elders through shared learning experiences and mentorship."
+                            title={t.about.v2Title}
+                            description={t.about.v2Desc}
                         />
                         <ValueCard
                             icon={Sparkles}
-                            title="Economic Empowerment."
-                            description="Closing the digital gap for Black-led ventures, fostering entrepreneurship, and building long-term financial security."
+                            title={t.about.v3Title}
+                            description={t.about.v3Desc}
                         />
                     </div>
 
@@ -96,7 +99,7 @@ export function AboutSection() {
                         href="/about"
                         className="self-start group flex items-center gap-3 mt-2 px-6 py-3 bg-swan-midnight text-white rounded-full font-medium text-sm shadow-lg hover:bg-swan-midnight/90 hover:shadow-xl transition-all duration-300"
                     >
-                        <span>Learn More About Us</span>
+                        <span>{t.about.learnMore}</span>
                         <div className="w-7 h-7 bg-white/10 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform">
                             <ArrowRight size={14} />
                         </div>
@@ -117,7 +120,7 @@ export function AboutSection() {
                     </div>
 
                     {/* Floating Elements */}
-                    <FloatingFoundedCard />
+                    <FloatingFoundedCard label={t.about.communityDriven} />
                 </div>
             </div>
         </section>

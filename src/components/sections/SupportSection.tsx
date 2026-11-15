@@ -2,32 +2,31 @@
 
 import Image from 'next/image'
 import { Box, Globe, Users } from 'lucide-react'
-
-const SUPPORT_PILLARS = [
-  {
-    icon: Box,
-    accent: 'bg-swan-blue/10 text-swan-blue',
-    title: 'Financial & Digital Literacy',
-    description:
-      'Workshops designed to prevent fraud, build self-sufficiency, and master digital tools for everyday confidence and communication.',
-  },
-  {
-    icon: Globe,
-    accent: 'bg-amber-100 text-amber-600',
-    title: 'Social Participation & Diversity',
-    description:
-      'Preserving BIPOC cultural heritage through arts, music, and networking events to build strong, inclusive community bonds.',
-  },
-  {
-    icon: Users,
-    accent: 'bg-emerald-100 text-emerald-600',
-    title: 'Access & Mobility Support',
-    description:
-      'Assistance with transportation and navigating government benefits to ensure essential services are accessible to everyone.',
-  },
-]
+import { useLanguage } from '@/context/LanguageContext'
 
 export function SupportSection() {
+  const { t } = useLanguage()
+
+  const supportPillars = [
+    {
+      icon: Box,
+      accent: 'bg-swan-blue/10 text-swan-blue',
+      title: t.support.p1Title,
+      description: t.support.p1Desc,
+    },
+    {
+      icon: Globe,
+      accent: 'bg-amber-100 text-amber-600',
+      title: t.support.p2Title,
+      description: t.support.p2Desc,
+    },
+    {
+      icon: Users,
+      accent: 'bg-emerald-100 text-emerald-600',
+      title: t.support.p3Title,
+      description: t.support.p3Desc,
+    },
+  ]
   return (
     <section
       id="support"
@@ -37,16 +36,16 @@ export function SupportSection() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-10">
           <div>
-            <span className="inline-block px-3 py-1 bg-swan-blue/20 text-swan-sky border border-swan-sky/20 text-[10px] font-semibold tracking-widest uppercase rounded-full mb-2">
-              Community Initiative
+            <span className="inline-block px-4 py-1.5 bg-swan-blue/20 text-swan-sky border border-swan-sky/20 text-xs font-semibold tracking-wide uppercase rounded-full mb-3">
+              {t.support.badge}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-swan-ivory leading-tight">
-              Integrated Support
+            <h2 className="text-3xl md:text-4xl font-bold text-swan-ivory leading-[1.15] tracking-tight">
+              {t.support.title}
             </h2>
-            <p className="text-swan-sky font-medium mt-1">For Seniors</p>
+            <p className="text-base text-swan-sky font-medium mt-1">{t.support.subtitle}</p>
           </div>
-          <p className="text-sm text-swan-ivory/70 max-w-sm leading-relaxed hidden sm:block">
-            Silverswan Integrated Hub presents a bilingual initiative for BIPOC communities to foster social connections, reduce isolation, and empower seniors across Canada.
+          <p className="text-base text-swan-ivory/70 max-w-sm leading-relaxed hidden sm:block">
+            {t.support.description}
           </p>
         </div>
 
@@ -65,14 +64,14 @@ export function SupportSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-swan-midnight/60 via-transparent to-transparent" />
             {/* Floating Badge */}
             <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-xl px-3.5 py-2 shadow-lg">
-              <p className="text-[10px] text-swan-midnight/60 font-medium">Supporting</p>
-              <p className="text-xs font-bold text-swan-midnight">100+ Seniors Across Canada</p>
+              <p className="text-[10px] text-swan-midnight/60 font-medium">{t.support.supporting}</p>
+              <p className="text-xs font-bold text-swan-midnight">{t.support.seniorsAcrossCanada}</p>
             </div>
           </div>
 
           {/* Feature Cards — takes 3/5 */}
           <div className="lg:col-span-3 flex flex-col gap-4 justify-between">
-            {SUPPORT_PILLARS.map((pillar, i) => {
+            {supportPillars.map((pillar, i) => {
               const Icon = pillar.icon
               return (
                 <div
@@ -91,8 +90,8 @@ export function SupportSection() {
 
                   {/* Text */}
                   <div>
-                    <h3 className="text-sm font-bold text-swan-midnight mb-1">{pillar.title}</h3>
-                    <p className="text-xs text-swan-midnight/60 leading-relaxed">{pillar.description}</p>
+                    <h3 className="text-base font-bold text-swan-midnight mb-1">{pillar.title}</h3>
+                    <p className="text-sm text-swan-midnight/50 leading-relaxed">{pillar.description}</p>
                   </div>
                 </div>
               )

@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, MapPin, Clock, Send, ArrowRight, ChevronDown, Menu, LayoutTemplate, Instagram } from 'lucide-react'
+import { Mail, MapPin, Clock, Send, ArrowRight, ChevronDown, Menu, Instagram } from 'lucide-react'
 import { Footer } from '@/components/sections/Footer'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLanguage } from '@/context/LanguageContext'
+import { LanguageToggle } from '@/components/ui/LanguageToggle'
 
-// Logo Component (same as other pages)
 const Logo = () => (
   <Link href="/" className="block">
     <Image
@@ -20,71 +21,56 @@ const Logo = () => (
   </Link>
 )
 
-// Floating Navigation (same as other pages)
 const FloatingNav = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { t } = useLanguage()
+
+  const navItems = [
+    { label: t.nav.home, href: '/' },
+    { label: t.nav.about, href: '/about' },
+    { label: t.nav.team, href: '/team' },
+    { label: t.nav.contact, href: '/contact' },
+  ]
 
   return (
-    <nav className="absolute top-8 right-8 z-20 flex items-center gap-3 hidden md:flex">
-      {/* Dropdown Pill */}
+    <nav className="absolute top-8 right-8 z-20 hidden md:flex items-center gap-3">
+      <LanguageToggle variant="light" />
+
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-swan-midnight flex items-center gap-2 shadow-sm hover:bg-white transition-all"
         >
-          All Pages
-          <ChevronDown
-            size={14}
-            className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          />
+          {t.nav.allPages}
+          <ChevronDown size={14} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         </button>
 
         {isOpen && (
           <div className="absolute top-full mt-2 right-0 w-48 bg-white rounded-xl shadow-xl p-2 flex flex-col gap-1 border border-swan-grey">
-            {['Home', 'About', 'Team', 'Contact'].map((item) => (
+            {navItems.map((item) => (
               <Link
-                key={item}
-                href={
-                  item === 'Home'
-                    ? '/'
-                    : item === 'About'
-                      ? '/about'
-                      : item === 'Team'
-                        ? '/team'
-                        : item === 'Contact'
-                          ? '/contact'
-                          : '#'
-                }
+                key={item.href}
+                href={item.href}
                 className="px-3 py-2 text-sm text-swan-midnight/70 hover:bg-swan-lavender rounded-lg hover:text-swan-midnight text-left block"
                 onClick={() => setIsOpen(false)}
               >
-                {item}
+                {item.label}
               </Link>
             ))}
           </div>
         )}
       </div>
 
-      {/* Contact Pill */}
-      <Link
-        href="/contact"
-        className="bg-white/90 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium text-swan-midnight shadow-sm hover:bg-white transition-all"
-      >
-        Contact
+      <Link href="/contact" className="bg-white/90 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium text-swan-midnight shadow-sm hover:bg-white transition-all">
+        {t.nav.contact}
       </Link>
-
-      {/* CTA Pill */}
-      <Link
-        href="/contact"
-        className="bg-swan-blue text-white px-6 py-2 rounded-full text-sm font-medium shadow-lg hover:bg-swan-blue/90 transition-all"
-      >
-        Join Us
+      <Link href="/contact" className="bg-swan-blue text-white px-6 py-2 rounded-full text-sm font-medium shadow-lg hover:bg-swan-blue/90 transition-all">
+        {t.nav.joinUs}
       </Link>
     </nav>
   )
 }
 
-// --- COMPONENTS ---
 const ContactInfoItem = ({
   icon: Icon,
   title,
@@ -98,8 +84,9 @@ const ContactInfoItem = ({
 }) => (
   <div className="flex items-start gap-5 group bg-white/70 backdrop-blur-md rounded-2xl p-4 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-white/60">
     <div
-      className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${color === 'blue' ? 'bg-swan-blue text-white' : 'bg-swan-midnight/10 text-swan-midnight'
-        }`}
+      className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 ${
+        color === 'blue' ? 'bg-swan-blue text-white' : 'bg-swan-midnight/10 text-swan-midnight'
+      }`}
     >
       <Icon className="w-6 h-6" />
     </div>
@@ -111,10 +98,12 @@ const ContactInfoItem = ({
 )
 
 export default function ContactPage() {
+  const { t } = useLanguage()
+
   return (
     <div className="min-h-screen flex flex-col bg-swan-ivory font-sans overflow-hidden">
       <main className="flex-grow relative pb-24">
-        {/* Background Logo Pattern (same as home contact section) */}
+        {/* Background Pattern */}
         <div
           className="absolute inset-0 pointer-events-none z-0 opacity-10"
           style={{
@@ -124,12 +113,16 @@ export default function ContactPage() {
             backgroundRepeat: 'repeat',
           }}
         />
-        {/* Header (same as other pages) */}
+
+        {/* Mobile Header */}
         <div className="md:hidden p-6 flex justify-between items-center sticky top-0 bg-swan-ivory z-50 shadow-sm">
           <Logo />
-          <button className="p-2 text-swan-midnight/60 hover:bg-swan-lavender rounded-full transition-colors">
-            <Menu size={24} />
-          </button>
+          <div className="flex items-center gap-2">
+            <LanguageToggle variant="light" />
+            <button className="p-2 text-swan-midnight/60 hover:bg-swan-lavender rounded-full transition-colors">
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
 
         {/* Desktop Logo */}
@@ -137,39 +130,37 @@ export default function ContactPage() {
           <Logo />
         </div>
 
-        {/* Floating Navigation (Desktop) */}
         <FloatingNav />
 
-        {/* 1. HERO SECTION */}
+        {/* 1. HERO */}
         <section className="relative pt-6 pb-10 md:pt-8 md:pb-14 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-swan-blue/10 text-swan-blue text-xs font-bold tracking-wide uppercase mb-6">
               <span className="w-2 h-2 rounded-full bg-swan-blue animate-pulse" />
-              Contact Us
+              {t.contactPage.heroBadge}
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-swan-midnight tracking-tight mb-6 leading-[1.1]">
-              We&apos;re here to <br />
+              {t.contactPage.heroTitle1} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-swan-blue to-swan-sky">
-                help & connect.
+                {t.contactPage.heroTitleHighlight}
               </span>
             </h1>
             <p className="text-lg text-swan-midnight/70 max-w-2xl leading-relaxed">
-              Have a question about our programs, volunteering, or partnerships? Reach out to the
-              Silverswan team directly.
+              {t.contactPage.heroSubtitle}
             </p>
           </div>
         </section>
 
-        {/* 2. MAIN GRID: INFO & FORM */}
+        {/* 2. MAIN GRID */}
         <section className="px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-              {/* Left Col: Contact Details */}
+              {/* Left Col */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="space-y-6">
                   <ContactInfoItem
                     icon={Mail}
-                    title="Email Us"
+                    title={t.contactPage.emailTitle}
                     color="blue"
                     details={
                       <a
@@ -182,7 +173,7 @@ export default function ContactPage() {
                   />
                   <ContactInfoItem
                     icon={Instagram}
-                    title="Instagram"
+                    title={t.contactPage.instagramTitle}
                     color="blue"
                     details={
                       <a
@@ -197,23 +188,21 @@ export default function ContactPage() {
                   />
                   <ContactInfoItem
                     icon={MapPin}
-                    title="Location"
+                    title={t.contactPage.locationTitle}
                     color="slate"
-                    details={
-                      <p>
-                        Montreal, Quebec
-                      </p>
-                    }
+                    details={<p>{t.contactPage.locationValue}</p>}
                   />
                   <ContactInfoItem
                     icon={Clock}
-                    title="Office Hours"
+                    title={t.contactPage.hoursTitle}
                     color="slate"
                     details={
                       <p>
-                        Mon - Fri: 9:00 AM - 5:00 PM<br />
-                        Sat: 10:00 AM - 2:00 PM<br />
-                        Sun: Closed
+                        {t.contactPage.hoursLine1}
+                        <br />
+                        {t.contactPage.hoursLine2}
+                        <br />
+                        {t.contactPage.hoursLine3}
                       </p>
                     }
                   />
@@ -232,14 +221,13 @@ export default function ContactPage() {
                     className="w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-700"
                     title="Map of Montreal"
                   />
-
                   <a
                     href="https://maps.google.com/maps?q=Montreal,+QC"
                     target="_blank"
                     rel="noreferrer"
                     className="absolute bottom-4 right-4 bg-white text-swan-midnight px-4 py-2 rounded-full text-sm font-bold shadow-md hover:shadow-xl transition-all flex items-center gap-2 z-10"
                   >
-                    Open in Maps <ArrowRight className="w-4 h-4" />
+                    {t.contactPage.openInMaps} <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
@@ -247,7 +235,7 @@ export default function ContactPage() {
               {/* Right Col: Form */}
               <div className="lg:col-span-7">
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white/60 shadow-2xl hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.2)] hover:-translate-y-1 transition-all duration-300">
-                  <h3 className="text-2xl font-bold text-swan-midnight mb-6">Send us a message</h3>
+                  <h3 className="text-2xl font-bold text-swan-midnight mb-6">{t.contactPage.formTitle}</h3>
                   <form
                     className="space-y-4"
                     action="mailto:silverswanintegrated@gmail.com"
@@ -257,26 +245,26 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-bold text-swan-midnight/70 ml-1">
-                          Full Name
+                          {t.contactPage.fieldName}
                         </label>
                         <input
                           type="text"
                           id="name"
                           name="name"
-                          placeholder="Jane Doe"
+                          placeholder={t.contactPage.fieldNamePlaceholder}
                           className="w-full px-4 py-3 bg-white rounded-xl border border-swan-blue/20 focus:border-swan-blue focus:ring-4 focus:ring-swan-blue/10 outline-none transition-all placeholder:text-swan-midnight/30 text-swan-midnight text-sm"
                           required
                         />
                       </div>
                       <div className="space-y-2">
                         <label htmlFor="email" className="text-sm font-bold text-swan-midnight/70 ml-1">
-                          Email Address
+                          {t.contactPage.fieldEmail}
                         </label>
                         <input
                           type="email"
                           id="email"
                           name="email"
-                          placeholder="jane@example.com"
+                          placeholder={t.contactPage.fieldEmailPlaceholder}
                           className="w-full px-4 py-3 bg-white rounded-xl border border-swan-blue/20 focus:border-swan-blue focus:ring-4 focus:ring-swan-blue/10 outline-none transition-all placeholder:text-swan-midnight/30 text-swan-midnight text-sm"
                           required
                         />
@@ -285,7 +273,7 @@ export default function ContactPage() {
 
                     <div className="space-y-2">
                       <label htmlFor="subject" className="text-sm font-bold text-swan-midnight/70 ml-1">
-                        I&apos;m interested in...
+                        {t.contactPage.fieldSubject}
                       </label>
                       <div className="relative">
                         <select
@@ -293,10 +281,10 @@ export default function ContactPage() {
                           name="subject"
                           className="w-full px-4 py-3 bg-white rounded-xl border border-swan-blue/20 focus:border-swan-blue focus:ring-4 focus:ring-swan-blue/10 outline-none transition-all text-swan-midnight cursor-pointer appearance-none text-sm"
                         >
-                          <option>General Inquiry</option>
-                          <option>Volunteering with Seniors</option>
-                          <option>Program Registration</option>
-                          <option>Partnership & Sponsorship</option>
+                          <option>{t.contactPage.optionGeneral}</option>
+                          <option>{t.contactPage.optionVolunteering}</option>
+                          <option>{t.contactPage.optionProgram}</option>
+                          <option>{t.contactPage.optionPartnership}</option>
                         </select>
                         <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-swan-midnight/40 pointer-events-none" />
                       </div>
@@ -304,13 +292,13 @@ export default function ContactPage() {
 
                     <div className="space-y-2">
                       <label htmlFor="message" className="text-sm font-bold text-swan-midnight/70 ml-1">
-                        Message
+                        {t.contactPage.fieldMessage}
                       </label>
                       <textarea
                         id="message"
                         name="message"
                         rows={4}
-                        placeholder="How can we help you?"
+                        placeholder={t.contactPage.fieldMessagePlaceholder}
                         className="w-full px-4 py-3 bg-white rounded-xl border border-swan-blue/20 focus:border-swan-blue focus:ring-4 focus:ring-swan-blue/10 outline-none transition-all placeholder:text-swan-midnight/30 text-swan-midnight resize-none text-sm"
                         required
                       />
@@ -320,7 +308,7 @@ export default function ContactPage() {
                       type="submit"
                       className="w-full py-3 bg-swan-blue hover:bg-swan-blue/90 text-white rounded-xl font-bold text-base shadow-xl shadow-swan-blue/20 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-2"
                     >
-                      <span>Send Message</span>
+                      <span>{t.contactPage.sendButton}</span>
                       <Send className="w-5 h-5" />
                     </button>
                   </form>
@@ -329,7 +317,6 @@ export default function ContactPage() {
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
     </div>

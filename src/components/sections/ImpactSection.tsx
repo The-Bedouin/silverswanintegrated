@@ -116,7 +116,7 @@ export function ImpactSection() {
               icon={TrendingUp}
               iconBg="bg-swan-sage/20"
               iconColor="text-swan-sage"
-              label="Success Rate"
+              label="Integration Success Rate"
               value="92%"
             />
           </div>

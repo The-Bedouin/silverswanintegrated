@@ -1,33 +1,33 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { Users, Lightbulb, Star } from 'lucide-react'
-
-const PILLARS = [
-  {
-    icon: Users,
-    accent: 'bg-swan-blue/10 text-swan-blue',
-    title: 'Social Connection & Inclusion',
-    description:
-      'Social sessions, community outings, and bilingual events in English & French help seniors build friendships and stay active.',
-  },
-  {
-    icon: Lightbulb,
-    accent: 'bg-amber-100 text-amber-600',
-    title: 'Skills for Independence',
-    description:
-      'Workshops on digital literacy, financial literacy, and skill-sharing in arts & crafts build confidence and self-sufficiency.',
-  },
-  {
-    icon: Star,
-    accent: 'bg-emerald-100 text-emerald-600',
-    title: 'Senior-Led Leadership & Mentorship',
-    description:
-      'Seniors shape the program, lead discussions, support newcomers, and connect with volunteers through peer mentorship.',
-  },
-]
+import { useLanguage } from '@/context/LanguageContext'
 
 export function SilverThreadsSection() {
+  const { t } = useLanguage()
+
+  const pillars = [
+    {
+      icon: Users,
+      accent: 'bg-swan-blue/10 text-swan-blue',
+      title: t.silverThreads.p1Title,
+      description: t.silverThreads.p1Desc,
+    },
+    {
+      icon: Lightbulb,
+      accent: 'bg-amber-100 text-amber-600',
+      title: t.silverThreads.p2Title,
+      description: t.silverThreads.p2Desc,
+    },
+    {
+      icon: Star,
+      accent: 'bg-emerald-100 text-emerald-600',
+      title: t.silverThreads.p3Title,
+      description: t.silverThreads.p3Desc,
+    },
+  ]
   return (
     <section
       id="silver-threads"
@@ -45,19 +45,27 @@ export function SilverThreadsSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
-            <span className="inline-block px-3 py-1 bg-swan-blue/10 text-swan-blue text-[10px] font-semibold tracking-widest uppercase rounded-full mb-2">
-              Program Spotlight
+            <span className="inline-block px-4 py-1.5 bg-swan-blue/10 border border-swan-blue/20 text-swan-blue text-xs font-semibold tracking-wide uppercase rounded-full mb-3">
+              {t.silverThreads.badge}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-swan-midnight leading-tight">
-              Silver Threads
+            <h2 className="text-3xl md:text-4xl font-bold text-swan-midnight leading-[1.15] tracking-tight">
+              {t.silverThreads.title}
             </h2>
-            <p className="text-swan-midnight/50 font-medium mt-1">Connecting Seniors</p>
+            <p className="text-base text-swan-midnight/50 font-medium mt-1">{t.silverThreads.subtitle}</p>
           </div>
-          <p className="text-sm text-swan-midnight/55 max-w-xs leading-relaxed hidden sm:block">
-            A holistic bilingual program keeping seniors socially connected, intellectually active, and community-led.
-          </p>
+          <div className="flex flex-col sm:items-end gap-3">
+            <p className="text-base text-swan-midnight/50 max-w-sm leading-relaxed sm:text-right hidden sm:block">
+              {t.silverThreads.description}
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center bg-swan-blue text-white px-6 py-2 rounded-full text-sm font-medium shadow-lg hover:bg-swan-blue/90 transition-all self-start sm:self-auto"
+            >
+              {t.silverThreads.joinUs}
+            </Link>
+          </div>
         </div>
 
         {/* Content grid */}
@@ -66,8 +74,8 @@ export function SilverThreadsSection() {
           {/* Image — takes 2/5 */}
           <div className="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-lg min-h-[280px]">
             <Image
-              src="/images/seniorssitting.jpg"
-              alt="Seniors sitting together and connecting"
+              src="/images/silverthreadsimage.jpg"
+              alt="Seniors standing together and connecting"
               fill
               className="object-cover object-center"
               priority
@@ -76,14 +84,14 @@ export function SilverThreadsSection() {
             <div className="absolute inset-0 bg-gradient-to-t from-swan-midnight/50 via-transparent to-transparent" />
             {/* Badge */}
             <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-2 shadow-md">
-              <p className="text-[10px] text-swan-midnight/50 font-medium">Available in</p>
-              <p className="text-xs font-bold text-swan-midnight">English & French 🇨🇦</p>
+              <p className="text-[10px] text-swan-midnight/50 font-medium">{t.silverThreads.availableIn}</p>
+              <p className="text-xs font-bold text-swan-midnight">{t.silverThreads.langBadge}</p>
             </div>
           </div>
 
           {/* Pillar cards — takes 3/5 */}
           <div className="lg:col-span-3 flex flex-col gap-4 justify-between">
-            {PILLARS.map((pillar, i) => {
+            {pillars.map((pillar, i) => {
               const Icon = pillar.icon
               return (
                 <div
@@ -102,8 +110,8 @@ export function SilverThreadsSection() {
 
                   {/* Text */}
                   <div>
-                    <h3 className="text-sm font-bold text-swan-midnight mb-1">{pillar.title}</h3>
-                    <p className="text-xs text-swan-midnight/55 leading-relaxed">{pillar.description}</p>
+                    <h3 className="text-base font-bold text-swan-midnight mb-1">{pillar.title}</h3>
+                    <p className="text-sm text-swan-midnight/50 leading-relaxed">{pillar.description}</p>
                   </div>
                 </div>
               )

@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import { LanguageProvider } from '@/context/LanguageContext'
 
 config.autoAddCss = false
 
@@ -39,7 +40,9 @@ export default function RootLayout({
         bricolage.variable,
         "font-sans antialiased bg-swan-ivory"
       )}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )

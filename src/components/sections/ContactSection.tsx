@@ -136,7 +136,7 @@ export function ContactSection() {
               <ContactCard
                 icon={MapPin}
                 title="Location"
-                value="Montreal Quebec"
+                value="Montreal, Quebec"
                 color="sky"
               />
             </div>
@@ -173,9 +173,9 @@ export function ContactSection() {
                       className="w-full px-4 py-3 bg-white/80 rounded-xl border border-swan-blue/20 focus:border-swan-blue focus:ring-4 focus:ring-swan-blue/10 outline-none transition-all text-swan-midnight appearance-none cursor-pointer hover:border-swan-blue/40 text-sm"
                     >
                       <option>General Inquiry</option>
-                      <option>Volunteering Opportunities</option>
+                      <option>Volunteer Opportunities</option>
                       <option>Program Support</option>
-                      <option>Partnership Proposal</option>
+                      <option>Partnership & Sponsorship</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-swan-midnight/40">
                       <ArrowRight className="w-4 h-4 rotate-90" />

@@ -118,8 +118,10 @@ export function Footer() {
                   silverswanintegrated@gmail.com
                 </a>
               </li>
-              <li>Montreal Quebec</li>
+              <li>Montreal, Quebec</li>
               <li>Mon – Fri: 9AM – 5PM</li>
+              <li>Sat: 10:00 AM - 2:00 PM</li> 
+              <li>Sun: CLOSED</li>       
               <li>
                 <a
                   href="https://www.instagram.com/silverswan_integratedhub?stkn=dXpyMXIxaXlsanNp&utm_source=qr"

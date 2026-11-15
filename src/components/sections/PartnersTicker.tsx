@@ -36,7 +36,7 @@ export function PartnersTicker() {
 
       <div className="max-w-7xl mx-auto px-4 mb-4 text-center">
         <p className="text-[11px] md:text-xs uppercase tracking-widest font-semibold text-swan-midnight/40">
-          Supported By &bull; Soutenu Par
+          Supported By &bull; Soutenu par
         </p>
       </div>
 
